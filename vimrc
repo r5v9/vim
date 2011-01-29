@@ -155,19 +155,6 @@ set statusline+=%*
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
 
-augroup vimrcEx
-    au!
-
-    " When editing a file, always jump to the last known position.
-    " Don't to it when the position is invalid or when inside an event handler
-    " (happens when dropping a file on gvim).
-    autocmd BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line($) |
-      \     exe "normal g`\"" |
-      \ endif
-    
-augroup END
-
 " Tell vim to remember certain things when we exit
 "  '100  :  marks will be remembered for up to 100 previously edited files
 "  "1000 :  will save up to 1000 lines for each register
