@@ -145,6 +145,16 @@ nnoremap <leader>W <C-w>s<C-w>j
 " ,z to zoom in/out splits
 nnoremap <leader>z <C-w>o
 
+" ,p to open a horizontal split with bash and python
+nnoremap <leader>p :ConqueTermVSplit bash<CR><ESC><ESC>:ConqueTermSplit python<CR>
+
+" configure syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=1
+
 augroup vimrcEx
     au!
 

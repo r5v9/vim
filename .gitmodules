@@ -28,3 +28,6 @@
 [submodule "bundle/scratch"]
 	path = bundle/scratch
 	url = git://github.com/vim-scripts/scratch.vim.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = git://github.com/scrooloose/syntastic.git
