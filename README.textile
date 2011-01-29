@@ -1,0 +1,7 @@
+.h1 Vim configuration
+
+To install, use:
+
+<pre>
+git clone git://github.com/rufiao/vim.git .vim && cd .vim && git submodule init && git submodule update && cd .. && ln -s .vim/vimrc .vimrc
+</pre>
