@@ -47,6 +47,8 @@ if has("gui_running")
     set cursorline
     set relativenumber
     set undofile
+    " use system clipboard
+    set clipboard=unnamed
 else
     set number
 endif
