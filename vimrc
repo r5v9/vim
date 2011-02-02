@@ -37,13 +37,22 @@ set hidden
 set wildmenu
 set wildmode=list:longest
 set visualbell
-set cursorline
 set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
-set relativenumber
-set undofile
+
+" options only supported in macvim
+if has("gui_running")
+    set cursorline
+    set relativenumber
+    set undofile
+else
+    set number
+endif
+
+" ignore binary files
+set wildignore+=*.o,*.obj,.git,*.class,*.jar,*.pyc
 
 " use , as the leader key
 let mapleader = ","
@@ -109,16 +118,16 @@ map <s-left> :tabp<CR>
 map <s-right> :tabn<CR>
 
 " move blocks of text using alt-up/down
-nnoremap <a-down> :m+<CR>==
-nnoremap <a-up> :m-2<CR>==
-inoremap <a-down> <Esc>:m+<CR>==gi
-inoremap <a-up> <Esc>:m-2<CR>==gi
-vnoremap <a-down> :m'>+<CR>gv=gv
-vnoremap <a-up> :m-2<CR>gv=gv
+nnoremap <A-j> :m+<CR>==
+nnoremap <A-k> :m-2<CR>==
+inoremap <A-j> <Esc>:m+<CR>==gi
+inoremap <A-k> <Esc>:m-2<CR>==gi
+vnoremap <A-j> :m'>+<CR>gv=gv
+vnoremap <A-k> :m-2<CR>gv=gv
 
 " copy blocks of text using shift-up/down
-map <s-down> ygvvo<ESC>pgv
-map <s-up> y<ESC>O<ESC>pgv
+vnoremap <s-down> ygvvo<ESC>pgv
+vnoremap <s-up> y<ESC>O<ESC>pgv
 
 " remap jj as ESC
 inoremap jj <ESC>
@@ -135,7 +144,7 @@ nnoremap <leader>v V`]
 " ,y toggles nerdtree
 nnoremap <leader>y :NERDTreeToggle<CR>
 
-" ,v shows yankring history
+" ,h shows yankring history
 nnoremap <leader>v :YRShow<CR>
 
 " ,w/W for horizontal/vertical splits
@@ -145,8 +154,25 @@ nnoremap <leader>W <C-w>s<C-w>j
 " ,z to zoom in/out splits
 nnoremap <leader>z <C-w>o
 
-" ,p to open a horizontal split with bash and python
-nnoremap <leader>p :ConqueTermVSplit bash<CR><ESC><ESC>:ConqueTermSplit python<CR>
+" ,p to execute python script
+nnoremap <leader>p :w<CR>:! python %<CR>
+
+" ,j to execute java class
+nnoremap <leader>j :w<CR>:! javac -cp .:lib/* % && java %:s/.java//<CR>
+
+" ,J to execute java test
+nnoremap <leader>J :w<CR>:! javac -cp .:lib/* % %:s/Test.java/.java/ && java -cp .:lib/* org.junit.runner.JUnitCore %:s/.java//<CR>
+
+" ,c to execute c program
+nnoremap <leader>c :w<CR>:! gcc % -o %:s/.c// && ./%:s/.c//<CR>
+
+" ,C to execute c++ program
+nnoremap <leader>C :w<CR>:! g++ % -o %:s/.cpp// && ./%:s/.cpp//<CR>
+
+",v edits .vimrc
+",V reloads .vimrc
+map ,v :tabnew ~/.vimrc<CR>
+map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " configure syntastic
 set statusline+=%#warningmsg#
