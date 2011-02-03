@@ -120,7 +120,7 @@ vmap <s-down> ]egv
 " remap jj as ESC
 inoremap jj <ESC>
 
-" ,s  strips all trailing whitespace in the current file
+" ,z  strips all trailing whitespace in the current file
 nnoremap <leader>z :%s/\s\+$//<cr>:let @/=''<CR>
 
 " ,a opens ACK
@@ -156,6 +156,12 @@ nnoremap <leader>c :w<CR>:! gcc % -o %:s/.c// && ./%:s/.c//<CR>
 
 " ,C to execute c++ program
 nnoremap <leader>C :w<CR>:! g++ % -o %:s/.cpp// && ./%:s/.cpp//<CR>
+
+" ,s to turn on/off spell checker
+nnoremap <leader>S :set spell!<CR>
+ 
+" Set region to British English
+set spelllang=en_gb
 
 ",v edits .vimrc
 ",V reloads .vimrc
