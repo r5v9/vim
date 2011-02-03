@@ -88,18 +88,6 @@ vnoremap <tab> %
 "set formatoptions=qrn1
 "set colorcolumn=120
 
-" disable the arrow keys while you’re in normal mode to help you learn to use hjkl
-"nnoremap <up> <nop>
-"nnoremap <down> <nop>
-"nnoremap <left> <nop>
-"nnoremap <right> <nop>
-"inoremap <up> <nop>
-"inoremap <down> <nop>
-"inoremap <left> <nop>
-"inoremap <right> <nop>
-"nnoremap j gj
-"nnoremap k gk
-
 " get rid of that stupid goddamned help key that you will invaribly hit constantly while aiming for escape
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
@@ -119,17 +107,15 @@ vnoremap > >gv
 map <s-left> :tabp<CR>
 map <s-right> :tabn<CR>
 
-" move blocks of text using alt-up/down
-nnoremap <A-j> :m+<CR>==
-nnoremap <A-k> :m-2<CR>==
-inoremap <A-j> <Esc>:m+<CR>==gi
-inoremap <A-k> <Esc>:m-2<CR>==gi
-vnoremap <A-j> :m'>+<CR>gv=gv
-vnoremap <A-k> :m-2<CR>gv=gv
-
 " copy blocks of text using shift-up/down
-vnoremap <s-down> ygvvo<ESC>pgv
-vnoremap <s-up> y<ESC>O<ESC>pgv
+vmap <c-s-down> y`]o<esc>pv`]
+vmap <c-s-up> yO<esc>P`[v`]
+
+" bubble lines (using unimpaired plugin)
+nmap <s-up> [e
+nmap <s-down> ]e
+vmap <s-up> [egv
+vmap <s-down> ]egv
 
 " remap jj as ESC
 inoremap jj <ESC>
@@ -147,7 +133,7 @@ nnoremap <leader>v V`]
 nnoremap <leader>y :NERDTreeToggle<CR>
 
 " ,h shows yankring history
-nnoremap <leader>v :YRShow<CR>
+" nnoremap <leader>v :YRShow<CR>
 
 " ,w/W for horizontal/vertical splits
 nnoremap <leader>w <C-w>v<C-w>l
