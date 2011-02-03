@@ -1,1 +1,4 @@
 .*~
+sessions
+*.swp
+.netrwhist

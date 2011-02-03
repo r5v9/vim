@@ -135,7 +135,7 @@ vnoremap <s-up> y<ESC>O<ESC>pgv
 inoremap jj <ESC>
 
 " ,s  strips all trailing whitespace in the current file
-nnoremap <leader>s :%s/\s\+$//<cr>:let @/=''<CR>
+nnoremap <leader>z :%s/\s\+$//<cr>:let @/=''<CR>
 
 " ,a opens ACK
 nnoremap <leader>a :Ack
@@ -154,7 +154,7 @@ nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <leader>W <C-w>s<C-w>j
 
 " ,z to zoom in/out splits
-nnoremap <leader>z <C-w>o
+" nnoremap <leader>z <C-w>o
 
 " ,p to execute python script
 nnoremap <leader>p :w<CR>:! python %<CR>
@@ -191,7 +191,8 @@ let g:syntastic_auto_loc_list=1
 "  n...  :  where to save the viminfo files
 set viminfo='100,\"1000,:100,%,n~/.viminfo
 
-" main function that restores the cursor position and its autocmd so that it gets triggered
+" restores the cursor position
+
 function! ResCur()
   if line("'\"") <= line("$")
     normal! g`"
@@ -203,4 +204,33 @@ augroup resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
+
+" auto save/load session
+
+function! MakeSession()
+  let b:sessiondir = $HOME . "/.vim/sessions"
+  if (filewritable(b:sessiondir) != 2)
+    exe 'silent !mkdir -p ' b:sessiondir
+    redraw!
+  endif
+  let b:filename = b:sessiondir . "/session.vim"
+  exe "mksession! " . b:filename
+endfunction
+
+function! LoadSession()
+  let b:sessiondir = $HOME . "/.vim/sessions"
+  let b:sessionfile = b:sessiondir . "/session.vim"
+  if (filereadable(b:sessionfile))
+    exe 'source ' b:sessionfile
+  else
+    echo "No session loaded."
+  endif
+endfunction
+
+" au VimEnter * :call LoadSession()
+au VimLeave * :call MakeSession()
+
+" ,s reloads last session
+nnoremap <leader>s :call LoadSession()<CR>
+
 
