@@ -44,7 +44,6 @@ set laststatus=2
 " options for macvim and gvim
 if has("gui_running")
     set cursorline
-    set undofile
 endif
 
 if has("gui_gvim")
@@ -57,6 +56,7 @@ if has("gui_macvim")
     " use system clipboard
     set clipboard=unnamed
     set relativenumber
+    set undofile
 endif
 
 " ignore binary files
