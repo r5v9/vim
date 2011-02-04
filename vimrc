@@ -1,5 +1,4 @@
 "set font and color scheme
-set guifont=Inconsolata:h16
 colorscheme rufiao
 
 "remove toolbar in macvim
@@ -42,15 +41,22 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 
-" options only supported in macvim
+" options for macvim and gvim
 if has("gui_running")
     set cursorline
-    set relativenumber
     set undofile
+endif
+
+if has("gui_gvim")
+    set guifont=Inconsolata\ 13
+endif
+
+" macvim only options
+if has("gui_macvim")
+    set guifont=Inconsolata:h16
     " use system clipboard
     set clipboard=unnamed
-else
-    set number
+    set relativenumber
 endif
 
 " ignore binary files
@@ -117,6 +123,12 @@ nmap <s-down> ]e
 vmap <s-up> [egv
 vmap <s-down> ]egv
 
+" control-j/k/h/l move to split up/down/left/right
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
 " remap jj as ESC
 inoremap jj <ESC>
 
@@ -124,7 +136,7 @@ inoremap jj <ESC>
 nnoremap <leader>z :%s/\s\+$//<cr>:let @/=''<CR>
 
 " ,a opens ACK
-nnoremap <leader>a :Ack
+nnoremap <leader>a :Ack<space>
 
 " ,v reselect the text that was just pasted
 nnoremap <leader>v V`]
@@ -157,7 +169,7 @@ nnoremap <leader>c :w<CR>:! gcc % -o %:s/.c// && ./%:s/.c//<CR>
 " ,C to execute c++ program
 nnoremap <leader>C :w<CR>:! g++ % -o %:s/.cpp// && ./%:s/.cpp//<CR>
 
-" ,s to turn on/off spell checker
+" ,S to turn on/off spell checker
 nnoremap <leader>S :set spell!<CR>
  
 " Set region to British English
@@ -167,6 +179,12 @@ set spelllang=en_gb
 ",V reloads .vimrc
 map ,v :tabnew ~/.vimrc<CR>
 map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+
+" ,l shows hidden characters
+nmap <leader>l :set list!<CR>
+ 
+" use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
 
 " configure syntastic
 set statusline+=%#warningmsg#
