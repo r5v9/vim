@@ -40,6 +40,7 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
+set number
 
 " options for macvim and gvim
 if has("gui_running")
