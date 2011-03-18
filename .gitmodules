@@ -37,3 +37,18 @@
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
 	url = git://github.com/tpope/vim-fugitive.git
+[submodule "bundle/markdown"]
+	path = bundle/markdown
+	url = git://github.com/tpope/vim-markdown.git
+[submodule "bundle/textile"]
+	path = bundle/textile
+	url = git://github.com/timcharper/textile.vim.git
+[submodule "bundle/limp"]
+	path = bundle/limp
+	url = https://github.com/vim-scripts/Limp
+[submodule "bundle/slimv"]
+	path = bundle/slimv
+	url = https://github.com/vim-scripts/slimv.vim
+[submodule "bundle/gundo"]
+	path = bundle/gundo
+	url = git://github.com/sjl/gundo.vim.git

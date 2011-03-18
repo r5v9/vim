@@ -53,7 +53,7 @@ endif
 
 " macvim only options
 if has("gui_macvim")
-    set guifont=Inconsolata:h16
+    set guifont=Inconsolata:h18
     " use system clipboard
     set clipboard=unnamed
     set relativenumber
@@ -65,6 +65,10 @@ set wildignore+=*.o,*.obj,.git,*.class,*.jar,*.pyc
 
 " use , as the leader key
 let mapleader = ","
+
+" configure slimv
+let g:slimv_lisp = '"plt-r5rs"'
+let g:slimv_keybindings = 2
 
 " fix broken default regex handling by automatically inserting a \v before any string you search for
 nnoremap / /\v
@@ -130,6 +134,9 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" control-+/- to resize splits
+" map <silent><Leader>=
+
 " remap jj as ESC
 inoremap jj <ESC>
 
@@ -172,6 +179,9 @@ nnoremap <leader>C :w<CR>:! g++ % -o %:s/.cpp// && ./%:s/.cpp//<CR>
 
 " ,S to turn on/off spell checker
 nnoremap <leader>S :set spell!<CR>
+
+" ,u turns on/off gundo
+nnoremap <leader>u :GundoToggle<CR>
  
 " Set region to British English
 set spelllang=en_gb
@@ -183,6 +193,13 @@ map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloa
 
 " ,l shows hidden characters
 nmap <leader>l :set list!<CR>
+
+" fugitive 
+nmap <leader>gs :Gstatus<cr>
+nmap <leader>gc :Gcommit<cr>
+nmap <leader>ga :Gwrite<cr>
+nmap <leader>gl :Glog<cr>
+nmap <leader>gd :Gdiff<cr>
  
 " use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
