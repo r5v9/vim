@@ -191,8 +191,8 @@ set spelllang=en_gb
 map ,v :tabnew ~/.vimrc<CR>
 map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
-" ,l shows hidden characters
-nmap <leader>l :set list!<CR>
+" ,h shows hidden characters
+nmap <leader>h :set list!<CR>
 
 " fugitive 
 nmap <leader>gs :Gstatus<cr>
