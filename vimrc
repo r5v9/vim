@@ -93,6 +93,9 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 
+" disable blinking cursor
+set gcr=a:blinkwait0,a:block-cursor
+
 " handle long lines
 "set wrap
 "set textwidth=120
