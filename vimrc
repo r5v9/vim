@@ -53,9 +53,9 @@ endif
 
 " macvim only options
 if has("gui_macvim")
-    set guifont=Inconsolata:h18
+    set guifont=Inconsolata:h16
     " use system clipboard
-    set clipboard=unnamed
+    " set clipboard=unnamed
     set relativenumber
     set undofile
 endif
@@ -71,8 +71,8 @@ let g:slimv_lisp = '"plt-r5rs"'
 let g:slimv_keybindings = 2
 
 " fix broken default regex handling by automatically inserting a \v before any string you search for
-nnoremap / /\v
-vnoremap / /\v
+"nnoremap / /\v
+"vnoremap / /\v
 
 " if you search for an all-lowercase string your search will be case-insensitive, but if one or more characters is uppercase the search will be case-sensitive
 set ignorecase
@@ -94,7 +94,7 @@ nnoremap <tab> %
 vnoremap <tab> %
 
 " disable blinking cursor
-set gcr=a:blinkwait0,a:block-cursor
+" set gcr=a:blinkwait0,a:block-cursor
 
 " handle long lines
 "set wrap
@@ -108,7 +108,7 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 " make ; do the same thing as :
-nnoremap ; :
+" nnoremap ; :
 
 " save on losing focus
 au FocusLost * :wa
@@ -118,8 +118,9 @@ vnoremap < <gv
 vnoremap > >gv
 
 " navigate around tabs using alt-left/right
-map <s-left> :tabp<CR>
-map <s-right> :tabn<CR>
+map <s-left> :bprev<CR>
+map <s-right> :bnext<CR>
+map <C-z> :bd<CR>
 
 " copy blocks of text using shift-up/down
 vmap <c-s-down> y`]o<esc>pv`]
@@ -185,7 +186,7 @@ nnoremap <leader>S :set spell!<CR>
 
 " ,u turns on/off gundo
 nnoremap <leader>u :GundoToggle<CR>
- 
+
 " Set region to British English
 set spelllang=en_gb
 
@@ -197,13 +198,13 @@ map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloa
 " ,h shows hidden characters
 nmap <leader>h :set list!<CR>
 
-" fugitive 
+" fugitive
 nmap <leader>gs :Gstatus<cr>
 nmap <leader>gc :Gcommit<cr>
 nmap <leader>ga :Gwrite<cr>
 nmap <leader>gl :Glog<cr>
 nmap <leader>gd :Gdiff<cr>
- 
+
 " use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
