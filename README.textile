@@ -2,12 +2,6 @@
 To install, use:
 
 <pre>
-git clone git://github.com/rufiao/vim.git .vim && (cd .vim && ./bundles.sh) && ln -s .vim/vimrc .vimrc
-</pre>
-
-To have python support in syntastic:
-
-<pre>
-sudo pip install pyflakes
+git clone git@github.com:rufiao/vim.git .vim && (cd .vim && ./bundles.sh) && ln -s .vim/vimrc .vimrc
 </pre>
 

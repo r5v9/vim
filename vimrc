@@ -154,7 +154,7 @@ nnoremap <leader>a :Ack<space>
 nnoremap <leader>v V`]
 
 " ,y toggles nerdtree
-nnoremap <leader>y :NERDTreeToggle<CR>
+" nnoremap <leader>y :NERDTreeToggle<CR>
 
 " ,h shows yankring history
 " nnoremap <leader>v :YRShow<CR>
@@ -246,7 +246,7 @@ augroup END
 " auto save/load session
 
 function! MakeSession()
-  let b:sessiondir = $HOME . "/.vim/tmp/sessions"
+  let b:sessiondir = $HOME . "/.vim/tmp"
   if (filewritable(b:sessiondir) != 2)
     exe 'silent !mkdir -p ' b:sessiondir
     redraw!
@@ -256,7 +256,7 @@ function! MakeSession()
 endfunction
 
 function! LoadSession()
-  let b:sessiondir = $HOME . "/.vim/tmp/sessions"
+  let b:sessiondir = $HOME . "/.vim/tmp"
   let b:sessionfile = b:sessiondir . "/session.vim"
   if (filereadable(b:sessionfile))
     exe 'source ' b:sessionfile
@@ -271,7 +271,7 @@ au VimLeave * :call MakeSession()
 " ,s reloads last session
 nnoremap <leader>s :call LoadSession()<CR>
 
-silent execute '!mkdir ~/.vim/tmp'
+silent execute '!mkdir -p ~/.vim/tmp'
 set backupdir=~/.vim/tmp//
 set directory=~/.vim/tmp//
 set viewdir=~/.vim/tmp//
