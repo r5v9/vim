@@ -22,14 +22,15 @@ git://github.com/timcharper/textile.vim.git
 git://github.com/tpope/vim-unimpaired.git
 git://github.com/chrismetcalf/vim-yankring.git
 git://github.com/vim-scripts/ZoomWin.git
+git://github.com/godlygeek/tabular.git
 "
 
 # clone/update bundles from git
 mkdir -p bundle
 for i in $GIT_BUNDLES; do
-  name=`echo $i | awk -F/ '{print $NF}' | awk -F.git '{print $1}'`
-  if [ -d "bundle/$i" ]; then 
-    (cd "bundle/$i" && git pull origin master)
+  name=`echo $i | perl -pe 's/(.+)\/(.+).git/$2/g'`
+  if [ -d "bundle/$name" ]; then 
+    (cd "bundle/$name" && git pull origin master)
   else
     (cd bundle && git clone $i)
   fi

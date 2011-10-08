@@ -192,11 +192,14 @@ set spelllang=en_gb
 
 ",v edits .vimrc
 ",V reloads .vimrc
-map ,v :tabnew ~/.vimrc<CR>
+map ,v :e ~/.vimrc<CR>
 map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " ,h shows hidden characters
 nmap <leader>h :set list!<CR>
+
+" ,q closes all buffers
+nmap <leader>q :bufdo bdelete<CR>
 
 " fugitive
 nmap <leader>gs :Gstatus<cr>
@@ -279,3 +282,4 @@ set undodir=~/.vim/tmp//
 
 " fuzzyfinder datadir
 let g:fuf_dataDir="~/.vim/tmp/fuf"
+
