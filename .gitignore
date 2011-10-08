@@ -1,4 +1,6 @@
 .*~
-sessions
 *.swp
+*.swo
 .netrwhist
+tmp
+bundle

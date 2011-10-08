@@ -21,9 +21,9 @@ set modelines=0
 
 " tab setttings. expand tabs to spaces, use width 4
 " see http://vimcasts.org/episodes/tabs-and-spaces/
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 
 " just make things better
@@ -111,7 +111,7 @@ vnoremap <F1> <ESC>
 " nnoremap ; :
 
 " save on losing focus
-au FocusLost * :wa
+autocmd BufLeave,FocusLost * silent! wall
 
 "make < > shifts keep selection
 vnoremap < <gv
@@ -205,6 +205,12 @@ nmap <leader>ga :Gwrite<cr>
 nmap <leader>gl :Glog<cr>
 nmap <leader>gd :Gdiff<cr>
 
+" lusty
+nmap <leader>f :LustyFilesystemExplorer<cr> 
+
+" fuzzy finder
+nmap <leader>T :FufFile<cr>
+
 " use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
@@ -240,7 +246,7 @@ augroup END
 " auto save/load session
 
 function! MakeSession()
-  let b:sessiondir = $HOME . "/.vim/sessions"
+  let b:sessiondir = $HOME . "/.vim/tmp/sessions"
   if (filewritable(b:sessiondir) != 2)
     exe 'silent !mkdir -p ' b:sessiondir
     redraw!
@@ -250,7 +256,7 @@ function! MakeSession()
 endfunction
 
 function! LoadSession()
-  let b:sessiondir = $HOME . "/.vim/sessions"
+  let b:sessiondir = $HOME . "/.vim/tmp/sessions"
   let b:sessionfile = b:sessiondir . "/session.vim"
   if (filereadable(b:sessionfile))
     exe 'source ' b:sessionfile
@@ -265,4 +271,9 @@ au VimLeave * :call MakeSession()
 " ,s reloads last session
 nnoremap <leader>s :call LoadSession()<CR>
 
+silent execute '!mkdir ~/.vim/tmp'
+set backupdir=~/.vim/tmp//
+set directory=~/.vim/tmp//
+set viewdir=~/.vim/tmp//
+set undodir=~/.vim/tmp//
 

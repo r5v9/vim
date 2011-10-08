@@ -1,6 +1,7 @@
 #!/bin/sh
 
 GIT_BUNDLES="
+git://git.wincent.com/command-t.git
 git://github.com/vim-scripts/FuzzyFinder.git
 git://github.com/vim-scripts/L9.git
 git://github.com/mileszs/ack.vim.git
@@ -26,17 +27,16 @@ git://github.com/vim-scripts/ZoomWin.git
 # clone/update bundles from git
 mkdir -p bundle
 for i in $GIT_BUNDLES; do
-  name=`echo $i | awk -F/ '{print $NF}' | awk -F. '{print $1}'`
-  echo $name
+  name=`echo $i | awk -F/ '{print $NF}' | awk -F.git '{print $1}'`
   if [ -d "bundle/$i" ]; then 
     (cd "bundle/$i" && git pull origin master)
   else
-    (cd bundle && git clone "$i.git")
+    (cd bundle && git clone $i)
   fi
 done
 
 # command-t ruby build
-cd bundle/command-t && rake make 
+(cd bundle/command-t && rake make)
 
 # python support in syntastic
 # sudo pip install pyflakes
