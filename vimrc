@@ -277,3 +277,5 @@ set directory=~/.vim/tmp//
 set viewdir=~/.vim/tmp//
 set undodir=~/.vim/tmp//
 
+" fuzzyfinder datadir
+let g:fuf_dataDir="~/.vim/tmp/fuf"
