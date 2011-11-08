@@ -1,7 +1,7 @@
 #!/bin/sh
 
 GIT_BUNDLES="
-git://git.wincent.com/command-t.git
+git://github.com/wincent/Command-T.git
 git://github.com/vim-scripts/FuzzyFinder.git
 git://github.com/vim-scripts/L9.git
 git://github.com/mileszs/ack.vim.git
@@ -39,7 +39,7 @@ for i in $GIT_BUNDLES; do
 done
 
 # command-t ruby build
-(cd bundle/command-t && rake make)
+(cd bundle/Command-T && rake make)
 
 # python support in syntastic
 # sudo pip install pyflakes
