@@ -20,9 +20,11 @@ git://github.com/tpope/vim-surround.git
 git://github.com/scrooloose/syntastic.git
 git://github.com/timcharper/textile.vim.git
 git://github.com/tpope/vim-unimpaired.git
-git://github.com/chrismetcalf/vim-yankring.git
 git://github.com/vim-scripts/ZoomWin.git
 git://github.com/godlygeek/tabular.git
+git://github.com/tsaleh/vim-tcomment.git
+git://github.com/tsaleh/vim-matchit.git
+git://github.com/tpope/vim-surround.git
 "
 
 # clone/update bundles from git
