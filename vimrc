@@ -1,5 +1,6 @@
 "set font and color scheme
-colorscheme rufiao
+"colorscheme rufiao
+colorscheme wombat
 
 "remove toolbar in macvim
 if has("gui_running")
@@ -25,6 +26,13 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
+
+" fold settings
+set foldmethod=syntax
+set foldlevelstart=20
+
+" autoreload files if changed externally
+:set autoread
 
 " just make things better
 set encoding=utf-8
@@ -53,7 +61,7 @@ endif
 
 " macvim only options
 if has("gui_macvim")
-    set guifont=Inconsolata:h16
+    set guifont=Inconsolata:h18
     " use system clipboard
     " set clipboard=unnamed
     set relativenumber
@@ -121,6 +129,7 @@ vnoremap > >gv
 map <s-left> :bprev<CR>
 map <s-right> :bnext<CR>
 map <C-z> :bd<CR>
+map <C-a> :LustyBufferExplorer<CR>
 
 " copy blocks of text using shift-up/down
 vmap <c-s-down> y`]o<esc>pv`]
@@ -166,20 +175,23 @@ nnoremap <leader>W <C-w>s<C-w>j
 " ,z to zoom in/out splits
 " nnoremap <leader>z <C-w>o
 
+" ,r to execute ruby script
+nnoremap <leader>r :w<CR>:! ruby %<CR>
+
 " ,p to execute python script
 nnoremap <leader>p :w<CR>:! python %<CR>
 
 " ,j to execute java class
-nnoremap <leader>j :w<CR>:! javac -cp .:lib/* % && java %:s/.java//<CR>
+" nnoremap <leader>j :w<CR>:! javac -cp .:lib/* % && java %:s/.java//<CR>
 
 " ,J to execute java test
-nnoremap <leader>J :w<CR>:! javac -cp .:lib/* % %:s/Test.java/.java/ && java -cp .:lib/* org.junit.runner.JUnitCore %:s/.java//<CR>
+" nnoremap <leader>J :w<CR>:! javac -cp .:lib/* % %:s/Test.java/.java/ && java -cp .:lib/* org.junit.runner.JUnitCore %:s/.java//<CR>
 
 " ,c to execute c program
-nnoremap <leader>c :w<CR>:! gcc % -o %:s/.c// && ./%:s/.c//<CR>
+" nnoremap <leader>c :w<CR>:! gcc % -o %:s/.c// && ./%:s/.c//<CR>
 
 " ,C to execute c++ program
-nnoremap <leader>C :w<CR>:! g++ % -o %:s/.cpp// && ./%:s/.cpp//<CR>
+" nnoremap <leader>C :w<CR>:! g++ % -o %:s/.cpp// && ./%:s/.cpp//<CR>
 
 " ,S to turn on/off spell checker
 nnoremap <leader>S :set spell!<CR>
@@ -190,16 +202,31 @@ nnoremap <leader>u :GundoToggle<CR>
 " Set region to British English
 set spelllang=en_gb
 
+" disable the arrow keys while you’re in normal mode to help you learn to use hjkl
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+nnoremap j gj
+nnoremap k gk
+
 ",v edits .vimrc
 ",V reloads .vimrc
 map ,v :e ~/.vimrc<CR>
 map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
+" ,c opens !/.vim/cheasheet.txt
+map ,c :e ~/.vim/cheasheet.txt<CR>
+
+" ,, opens !/.tasks
+map ,, :e ~/.tasks<CR>
+"
 " ,h shows hidden characters
 nmap <leader>h :set list!<CR>
-
-" ,q closes all buffers
-nmap <leader>q :bufdo bdelete<CR>
 
 " fugitive
 nmap <leader>gs :Gstatus<cr>
@@ -213,6 +240,9 @@ nmap <leader>f :LustyFilesystemExplorer<cr>
 
 " fuzzy finder
 nmap <leader>T :FufFile<cr>
+
+" ,q closes all buffers
+nmap <leader>q :bufdo bdelete<cr>
 
 " use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬

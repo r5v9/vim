@@ -9,7 +9,6 @@ git://github.com/tpope/vim-fugitive.git
 git://github.com/sjl/gundo.vim.git
 git://github.com/sjbach/lusty.git
 git://github.com/tpope/vim-markdown.git
-git://github.com/vim-scripts/minibufexplorerpp.git
 git://github.com/scrooloose/nerdcommenter.git
 git://github.com/scrooloose/nerdtree.git
 git://github.com/tpope/vim-repeat.git
