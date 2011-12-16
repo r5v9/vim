@@ -1,0 +1,51 @@
+
+------------------------------ shortcuts ------------------------------
+
+gc                      = comment selected lines
+gcc                     = comment current line
+:Tab /<regex>           = tabularize on <regex>
+:Tab /<regex>\zs        = tabularize on <regex>, don't match <regex> itself (will keep it on the left)
+cc                      = change current line
+?                       = search backwards
+*                       = searches for next identifier under the cursor
+#                       = searches for previous identifier under the cursor
+m<char>                 = sets marker <char>
+`<char>                 = go to marker <char>
+%                       = go to match (block/bracket/etc.)
+K                       = help for identifier under the cursor
+C                       = changes to the end of the line
+Y                       = yanks the whole line
+s                       = deletes current char and enters insert mode
+S                       = deletes current line and enters insert mode
+za                      = toggles fold
+zo                      = open fold under cursor
+zc                      = close fold under cursor
+zR                      = open all folds
+zM                      = close all folds
+cs<target><s>           = set surrounding around <target> (w for word, W for word + skip punctuation, s for sentence, and p for paragraph) to <s>
+cs<old><new>            = change surrounding from <old> to <new>
+S<s>                    = [visual] set <s> surrounding
+ds<s>                   = delete <s> surrounding
+control-s <s>           = [insert] add surrounding <s>
+control-s control-s <s> = [insert] add surrounding <s> in between newlines
+!<command>              = runs external command over text/selection
+g_                      = go to the last non-blank character in the line
+:b#                     = go to last edited file
+:e!                     = reload current file
+
+e                       = go to the end of the current word.
+E                       = go to the end of the current WORD.
+b                       = go to the previous (before) word.
+B                       = go to the previous (before) WORD.
+w                       = go to the next word.
+W                       = go to the next WORD.
+
+------------------------------ links ------------------------------
+
+http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html
+
+------------------------------ annoyances ------------------------------
+
+* repeat a few commands before the last 
+* go to last edited point
+

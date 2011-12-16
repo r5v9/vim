@@ -203,16 +203,16 @@ nnoremap <leader>u :GundoToggle<CR>
 set spelllang=en_gb
 
 " disable the arrow keys while you’re in normal mode to help you learn to use hjkl
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-nnoremap j gj
-nnoremap k gk
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+" nnoremap <left> <nop>
+" nnoremap <right> <nop>
+" inoremap <up> <nop>
+" inoremap <down> <nop>
+" inoremap <left> <nop>
+" inoremap <right> <nop>
+" nnoremap j gj
+" nnoremap k gk
 
 ",v edits .vimrc
 ",V reloads .vimrc
@@ -313,3 +313,11 @@ set undodir=~/.vim/tmp//
 " fuzzyfinder datadir
 let g:fuf_dataDir="~/.vim/tmp/fuf"
 
+" Vagrant
+au BufNewFile,BufRead [vV]agrantfile     set filetype=ruby
+" Bundler
+au BufNewFile,BufRead Gemfile            set filetype=ruby
+" Capistrano
+au BufNewFile,BufRead Capfile            set filetype=ruby
+" Rake
+au BufNewFile,BufRead [rR]akefile,*.rake set filetype=ruby
