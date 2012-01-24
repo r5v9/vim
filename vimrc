@@ -321,3 +321,10 @@ au BufNewFile,BufRead Gemfile            set filetype=ruby
 au BufNewFile,BufRead Capfile            set filetype=ruby
 " Rake
 au BufNewFile,BufRead [rR]akefile,*.rake set filetype=ruby
+
+function! AutoResize()
+  let w = &columns*55/100
+  exec 'vertical resize '.w
+endfunction
+ 
+autocmd WinEnter * call AutoResize()
