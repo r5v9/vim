@@ -21,7 +21,7 @@ git://github.com/timcharper/textile.vim.git
 git://github.com/tpope/vim-unimpaired.git
 git://github.com/vim-scripts/ZoomWin.git
 git://github.com/godlygeek/tabular.git
-git://github.com/tsaleh/vim-tcomment.git
+https://github.com/vim-scripts/tComment
 git://github.com/tsaleh/vim-matchit.git
 git://github.com/tpope/vim-surround.git
 "
@@ -41,5 +41,5 @@ done
 (cd bundle/Command-T && rake make)
 
 # python support in syntastic
-# sudo pip install pyflakes
+sudo pip install pyflakes
 
