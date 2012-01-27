@@ -24,6 +24,7 @@ git://github.com/godlygeek/tabular.git
 https://github.com/vim-scripts/tComment
 git://github.com/tsaleh/vim-matchit.git
 git://github.com/tpope/vim-surround.git
+git://github.com/vim-scripts/ScrollColors.git
 "
 
 # clone/update bundles from git
