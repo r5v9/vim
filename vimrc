@@ -1,5 +1,7 @@
 "set font and color scheme
 "colorscheme rufiao
+"colorscheme codeburn
+"colorscheme fokus
 colorscheme wombat
 
 "remove toolbar in macvim
@@ -61,7 +63,7 @@ endif
 
 " macvim only options
 if has("gui_macvim")
-    set guifont=Inconsolata:h18
+    set guifont=Inconsolata:h16
     " use system clipboard
     " set clipboard=unnamed
     set relativenumber
@@ -322,9 +324,9 @@ au BufNewFile,BufRead Capfile            set filetype=ruby
 " Rake
 au BufNewFile,BufRead [rR]akefile,*.rake set filetype=ruby
 
-function! AutoResize()
-  let w = &columns*55/100
-  exec 'vertical resize '.w
-endfunction
- 
-autocmd WinEnter * call AutoResize()
+" function! AutoResize()
+"   let w = &columns*55/100
+"   exec 'vertical resize '.w
+" endfunction
+"  
+" autocmd WinEnter * call AutoResize()
