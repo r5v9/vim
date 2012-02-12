@@ -2,11 +2,12 @@
 "colorscheme rufiao
 "colorscheme codeburn
 "colorscheme fokus
-colorscheme wombat
+"colorscheme wombat
+colorscheme darkblue2
 
 "remove toolbar in macvim
 if has("gui_running")
-    set guioptions-=T
+  set guioptions-=T
 endif
 
 " load pathogen (all plugins in the bundles folder)
@@ -54,20 +55,20 @@ set number
 
 " options for macvim and gvim
 if has("gui_running")
-    set cursorline
+  set cursorline
 endif
 
 if has("gui_gvim")
-    set guifont=Inconsolata\ 13
+  set guifont=Inconsolata\ 13
 endif
 
 " macvim only options
 if has("gui_macvim")
-    set guifont=Inconsolata:h16
-    " use system clipboard
-    " set clipboard=unnamed
-    set relativenumber
-    set undofile
+  set guifont=Inconsolata:h18
+  " use system clipboard
+  " set clipboard=unnamed
+  set relativenumber
+  set undofile
 endif
 
 " ignore binary files
@@ -128,14 +129,17 @@ vnoremap < <gv
 vnoremap > >gv
 
 " navigate around tabs using alt-left/right
-map <s-left> :bprev<CR>
-map <s-right> :bnext<CR>
-map <C-z> :bd<CR>
-map <C-a> :LustyBufferExplorer<CR>
+" map <s-left> :bprev<CR>
+" map <s-right> :bnext<CR>
+map <s-left> :BufSurfBack<CR>
+map <s-right> :BufSurfForward<CR>
+nnoremap <leader>z :bd<CR>
+nnoremap <leader>l :LustyBufferExplorer<CR>
+map ,, :LustyBufferExplorer<CR><CR>
 
 " copy blocks of text using shift-up/down
-vmap <c-s-down> y`]o<esc>pv`]
-vmap <c-s-up> yO<esc>P`[v`]
+" vmap <c-s-down> y`]o<esc>pv`]
+" vmap <c-s-up> yO<esc>P`[v`]
 
 " bubble lines (using unimpaired plugin)
 nmap <s-up> [e
@@ -149,20 +153,40 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+":V edits .vimrc
+":VV reloads .vimrc
+:command! V exe "e ~/.vimrc"
+:command! VV exe "w | source ~/.vimrc | filetype detect | echo 'vimrc reloaded'"
+
+" :C opens !/.vim/cheasheet.txt
+:command! C exe "e ~/.vim/cheasheet.txt"
+
+" :H shows hidden characters
+:command! H exe ":set list!"
+
+" :F opens lusty
+:command! L exe ":LustyFilesystemExplorer"
+
+" :T opens fuzzy finder
+:command! T exe ":FufFile"
+
+" :Q closes all buffers
+:command! Q exe ":bufdo bdelete"
+
 " control-+/- to resize splits
 " map <silent><Leader>=
 
 " remap jj as ESC
 inoremap jj <ESC>
 
-" ,z  strips all trailing whitespace in the current file
-nnoremap <leader>z :%s/\s\+$//<cr>:let @/=''<CR>
+" :Z  strips all trailing whitespace in the current file
+:command! T exe ":%s/\s\+$// | :let @/=''"
 
 " ,a opens ACK
 nnoremap <leader>a :Ack<space>
 
 " ,v reselect the text that was just pasted
-nnoremap <leader>v V`]
+" nnoremap <leader>v V`]
 
 " ,y toggles nerdtree
 " nnoremap <leader>y :NERDTreeToggle<CR>
@@ -177,11 +201,14 @@ nnoremap <leader>W <C-w>s<C-w>j
 " ,z to zoom in/out splits
 " nnoremap <leader>z <C-w>o
 
-" ,r to execute ruby script
-nnoremap <leader>r :w<CR>:! ruby %<CR>
+" :R to execute ruby script
+:command! R exe ":w | :! ruby %"
 
-" ,p to execute python script
-nnoremap <leader>p :w<CR>:! python %<CR>
+" :P to execute python script
+:command! P exe ":w | :! python %"
+
+" ,r reformats file
+nnoremap <leader>r gg=G``<CR>
 
 " ,j to execute java class
 " nnoremap <leader>j :w<CR>:! javac -cp .:lib/* % && java %:s/.java//<CR>
@@ -189,62 +216,32 @@ nnoremap <leader>p :w<CR>:! python %<CR>
 " ,J to execute java test
 " nnoremap <leader>J :w<CR>:! javac -cp .:lib/* % %:s/Test.java/.java/ && java -cp .:lib/* org.junit.runner.JUnitCore %:s/.java//<CR>
 
-" ,c to execute c program
-" nnoremap <leader>c :w<CR>:! gcc % -o %:s/.c// && ./%:s/.c//<CR>
+" :CC to execute c program
+:command! CC exe ":w | :! gcc % -o %:s/.c// && ./%:s/.c//"
 
-" ,C to execute c++ program
-" nnoremap <leader>C :w<CR>:! g++ % -o %:s/.cpp// && ./%:s/.cpp//<CR>
+" :CP to execute c++ program
+:command! CP exe ":w | :! g++ % -o %:s/.cpp// && ./%:s/.cpp//"
 
-" ,S to turn on/off spell checker
-nnoremap <leader>S :set spell!<CR>
+" :S to turn on/off spell checker
+:command! S exe ":set spell!"
 
-" ,u turns on/off gundo
-nnoremap <leader>u :GundoToggle<CR>
+" :U turns on/off gundo
+:command! U exe ":GundoToggle"
 
 " Set region to British English
 set spelllang=en_gb
 
 " disable the arrow keys while you’re in normal mode to help you learn to use hjkl
-" nnoremap <up> <nop>
-" nnoremap <down> <nop>
-" nnoremap <left> <nop>
-" nnoremap <right> <nop>
-" inoremap <up> <nop>
-" inoremap <down> <nop>
-" inoremap <left> <nop>
-" inoremap <right> <nop>
-" nnoremap j gj
-" nnoremap k gk
-
-",v edits .vimrc
-",V reloads .vimrc
-map ,v :e ~/.vimrc<CR>
-map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-
-" ,c opens !/.vim/cheasheet.txt
-map ,c :e ~/.vim/cheasheet.txt<CR>
-
-" ,, opens !/.tasks
-map ,, :e ~/.tasks<CR>
-"
-" ,h shows hidden characters
-nmap <leader>h :set list!<CR>
-
-" fugitive
-nmap <leader>gs :Gstatus<cr>
-nmap <leader>gc :Gcommit<cr>
-nmap <leader>ga :Gwrite<cr>
-nmap <leader>gl :Glog<cr>
-nmap <leader>gd :Gdiff<cr>
-
-" lusty
-nmap <leader>f :LustyFilesystemExplorer<cr> 
-
-" fuzzy finder
-nmap <leader>T :FufFile<cr>
-
-" ,q closes all buffers
-nmap <leader>q :bufdo bdelete<cr>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+nnoremap j gj
+nnoremap k gk
 
 " use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
@@ -256,13 +253,22 @@ set statusline+=%*
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
 
+silent execute '!mkdir -p ~/.vim/tmp && for i in backup dir view undo fuf; do mkdir -p ~/.vim/tmp/$i; done'
+set backupdir=~/.vim/tmp/backup/
+set directory=~/.vim/tmp/dir/
+set viewdir=~/.vim/tmp/view/
+set undodir=~/.vim/tmp/undo/
+
+" fuzzyfinder datadir
+let g:fuf_dataDir="~/.vim/tmp/fuf"
+
 " Tell vim to remember certain things when we exit
 "  '100  :  marks will be remembered for up to 100 previously edited files
 "  "1000 :  will save up to 1000 lines for each register
 "  :100  :  up to 100 lines of command-line history will be remembered
 "  %     :  saves and restores the buffer list
 "  n...  :  where to save the viminfo files
-set viminfo='100,\"1000,:100,%,n~/.viminfo
+set viminfo='100,\"1000,:100,%,n~/.vim/tmp/.viminfo
 
 " restores the cursor position
 
@@ -306,22 +312,10 @@ au VimLeave * :call MakeSession()
 " ,s reloads last session
 nnoremap <leader>s :call LoadSession()<CR>
 
-silent execute '!mkdir -p ~/.vim/tmp'
-set backupdir=~/.vim/tmp//
-set directory=~/.vim/tmp//
-set viewdir=~/.vim/tmp//
-set undodir=~/.vim/tmp//
-
-" fuzzyfinder datadir
-let g:fuf_dataDir="~/.vim/tmp/fuf"
-
-" Vagrant
+" ruby file types
 au BufNewFile,BufRead [vV]agrantfile     set filetype=ruby
-" Bundler
 au BufNewFile,BufRead Gemfile            set filetype=ruby
-" Capistrano
 au BufNewFile,BufRead Capfile            set filetype=ruby
-" Rake
 au BufNewFile,BufRead [rR]akefile,*.rake set filetype=ruby
 
 " function! AutoResize()
@@ -330,3 +324,16 @@ au BufNewFile,BufRead [rR]akefile,*.rake set filetype=ruby
 " endfunction
 "  
 " autocmd WinEnter * call AutoResize()
+
+" use :w!! to write to a file using sudo if you forgot to sudo vim file
+cmap w!! %!sudo tee > /dev/null %
+
+set winaltkeys=no
+map <A-right> <Plug>CamelCaseMotion_w
+map <A-left> <Plug>CamelCaseMotion_b
+"map <A-e> <Plug>CamelCaseMotion_e
+
+" let g:camelchar = "A-Z0-9.,;:{([`'\""
+" nnoremap <A-Left> :call search('\<\<Bar>\u', 'bW')<CR>
+" nnoremap <A-Right> :call search('\<\<Bar>\u', 'W')<CR>
+

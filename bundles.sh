@@ -21,10 +21,12 @@ git://github.com/timcharper/textile.vim.git
 git://github.com/tpope/vim-unimpaired.git
 git://github.com/vim-scripts/ZoomWin.git
 git://github.com/godlygeek/tabular.git
-https://github.com/vim-scripts/tComment
+git://github.com/vim-scripts/tComment.git
 git://github.com/tsaleh/vim-matchit.git
 git://github.com/tpope/vim-surround.git
 git://github.com/vim-scripts/ScrollColors.git
+git://github.com/ton/vim-bufsurf.git
+git://github.com/vim-scripts/camelcasemotion.git
 "
 
 # clone/update bundles from git
