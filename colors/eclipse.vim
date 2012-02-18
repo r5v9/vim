@@ -1,1 +1,0 @@
-favorites/eclipse.vim

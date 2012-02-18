@@ -1,1 +1,0 @@
-favorites/railscasts2.vim

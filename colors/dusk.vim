@@ -1,1 +1,0 @@
-favorites/dusk.vim

@@ -1,1 +1,0 @@
-favorites/moria.vim

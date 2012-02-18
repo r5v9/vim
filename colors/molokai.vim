@@ -1,1 +1,0 @@
-favorites/molokai.vim

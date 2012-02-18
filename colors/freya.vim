@@ -1,1 +1,0 @@
-favorites/freya.vim

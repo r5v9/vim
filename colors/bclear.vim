@@ -1,1 +1,0 @@
-favorites/bclear.vim

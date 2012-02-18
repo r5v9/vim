@@ -1,1 +1,0 @@
-favorites/desertEx.vim
