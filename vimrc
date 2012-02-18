@@ -1,10 +1,5 @@
 "set font and color scheme
-"colorscheme rufiao
-"colorscheme codeburn
-"colorscheme fokus
-"colorscheme wombat
-" colorscheme darkblue2
-colorscheme molokai
+colorscheme molokai-rufiao
 
 "remove toolbar in macvim
 if has("gui_running")
@@ -42,7 +37,7 @@ set foldlevelstart=20
 set encoding=utf-8
 set scrolloff=3
 set autoindent
-set showmode
+set showmode! " disable showmode, as powerline shows it
 set showcmd
 set hidden
 set wildmenu
@@ -65,10 +60,11 @@ endif
 
 " macvim only options
 if has("gui_macvim")
-  set guifont=Inconsolata:h18
+  set guifont=Inconsolata:h20
   " use system clipboard
   " set clipboard=unnamed
-  set relativenumber
+  " set relativenumber
+  autocmd BufEnter * set relativenumber
   set undofile
 endif
 
@@ -102,7 +98,7 @@ nnoremap <tab> %
 vnoremap <tab> %
 
 " disable blinking cursor
-" set gcr=a:blinkwait0,a:block-cursor
+set gcr=a:blinkwait0,a:block-cursor
 
 " handle long lines
 "set wrap
@@ -345,3 +341,26 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
 " improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
+
+" statusline
+" set statusline=
+" set statusline+=%<\                          " cut at start
+" set statusline+=%2*[%n%H%M%R%W]%*\           " flags and buf no
+" set statusline+=%-40f\                       " path
+" set statusline+=%=%1*%y%*%*\                 " file type
+" set statusline+=%10((%l,%c)%)\               " line and column
+" set statusline+=%P                           " percentage of file
+" set statusline=                              " clear the statusline for when vimrc is reloaded
+" set statusline+=%-3.3n\                      " buffer number
+" set statusline+=%f\                          " file name
+" set statusline+=%h%m%r%w                     " flags
+" set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
+" set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
+" set statusline+=%{&fileformat}]              " file format
+" set statusline+=%=                           " right align
+" set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
+" noh
+
+" powerline
+let g:Powerline_symbols = 'fancy'
+set laststatus=2
