@@ -9,11 +9,8 @@ git://github.com/tpope/vim-fugitive.git
 git://github.com/sjl/gundo.vim.git
 git://github.com/sjbach/lusty.git
 git://github.com/tpope/vim-markdown.git
-git://github.com/scrooloose/nerdcommenter.git
 git://github.com/scrooloose/nerdtree.git
 git://github.com/tpope/vim-repeat.git
-git://github.com/vim-scripts/scratch.vim.git
-git://github.com/vim-scripts/slimv.vim.git
 git://github.com/ervandew/supertab.git
 git://github.com/tpope/vim-surround.git
 git://github.com/scrooloose/syntastic.git
@@ -27,6 +24,7 @@ git://github.com/tpope/vim-surround.git
 git://github.com/vim-scripts/ScrollColors.git
 git://github.com/ton/vim-bufsurf.git
 git://github.com/vim-scripts/camelcasemotion.git
+git://github.com/vim-scripts/rubycomplete.vim.git
 "
 
 # clone/update bundles from git

@@ -4,3 +4,6 @@
 .netrwhist
 tmp
 bundle
+colors/repos
+colors/all
+colors/*.vim

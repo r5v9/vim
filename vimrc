@@ -3,7 +3,8 @@
 "colorscheme codeburn
 "colorscheme fokus
 "colorscheme wombat
-colorscheme darkblue2
+" colorscheme darkblue2
+colorscheme molokai
 
 "remove toolbar in macvim
 if has("gui_running")
@@ -77,10 +78,6 @@ set wildignore+=*.o,*.obj,.git,*.class,*.jar,*.pyc
 " use , as the leader key
 let mapleader = ","
 
-" configure slimv
-let g:slimv_lisp = '"plt-r5rs"'
-let g:slimv_keybindings = 2
-
 " fix broken default regex handling by automatically inserting a \v before any string you search for
 "nnoremap / /\v
 "vnoremap / /\v
@@ -128,11 +125,11 @@ autocmd BufLeave,FocusLost * silent! wall
 vnoremap < <gv
 vnoremap > >gv
 
-" navigate around tabs using alt-left/right
-" map <s-left> :bprev<CR>
-" map <s-right> :bnext<CR>
-map <s-left> :BufSurfBack<CR>
-map <s-right> :BufSurfForward<CR>
+" navigate around tabs/buffers
+map <d-left> :tabprevious<CR>
+map <d-right> :tabnext<CR>
+map <d-a-left> :BufSurfBack<CR>
+map <d-a-right> :BufSurfForward<CR>
 nnoremap <leader>z :bd<CR>
 nnoremap <leader>l :LustyBufferExplorer<CR>
 map ,, :LustyBufferExplorer<CR><CR>
@@ -168,10 +165,13 @@ map <C-l> <C-W>l
 :command! L exe ":LustyFilesystemExplorer"
 
 " :T opens fuzzy finder
-:command! T exe ":FufFile"
+:command! F exe ":FufFile"
 
 " :Q closes all buffers
 :command! Q exe ":bufdo bdelete"
+
+" :T converts all buffers into tabs
+:command! T exe ":tab sball"
 
 " control-+/- to resize splits
 " map <silent><Leader>=
@@ -180,7 +180,7 @@ map <C-l> <C-W>l
 inoremap jj <ESC>
 
 " :Z  strips all trailing whitespace in the current file
-:command! T exe ":%s/\s\+$// | :let @/=''"
+:command! Z exe ":%s/\s\+$// | :let @/=''"
 
 " ,a opens ACK
 nnoremap <leader>a :Ack<space>
@@ -268,7 +268,7 @@ let g:fuf_dataDir="~/.vim/tmp/fuf"
 "  :100  :  up to 100 lines of command-line history will be remembered
 "  %     :  saves and restores the buffer list
 "  n...  :  where to save the viminfo files
-set viminfo='100,\"1000,:100,%,n~/.vim/tmp/.viminfo
+set viminfo='100,\"1000,:100,%,n~/.vim/tmp/viminfo
 
 " restores the cursor position
 
@@ -292,13 +292,13 @@ function! MakeSession()
     exe 'silent !mkdir -p ' b:sessiondir
     redraw!
   endif
-  let b:filename = b:sessiondir . "/session.vim"
+  let b:filename = b:sessiondir . "/session"
   exe "mksession! " . b:filename
 endfunction
 
 function! LoadSession()
   let b:sessiondir = $HOME . "/.vim/tmp"
-  let b:sessionfile = b:sessiondir . "/session.vim"
+  let b:sessionfile = b:sessiondir . "/session"
   if (filereadable(b:sessionfile))
     exe 'source ' b:sessionfile
   else
@@ -337,3 +337,11 @@ map <A-left> <Plug>CamelCaseMotion_b
 " nnoremap <A-Left> :call search('\<\<Bar>\u', 'bW')<CR>
 " nnoremap <A-Right> :call search('\<\<Bar>\u', 'W')<CR>
 
+" ruby autocomplete
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+
+" improve autocomplete menu color
+highlight Pmenu ctermbg=238 gui=bold

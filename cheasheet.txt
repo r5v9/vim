@@ -40,6 +40,8 @@ B                       = go to the previous (before) WORD.
 w                       = go to the next word.
 W                       = go to the next WORD.
 
+:tab sball              = tabs for all open buffers
+
 ------------------------------ links ------------------------------
 
 http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html
