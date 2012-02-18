@@ -25,6 +25,7 @@ git://github.com/vim-scripts/ScrollColors.git
 git://github.com/ton/vim-bufsurf.git
 git://github.com/vim-scripts/camelcasemotion.git
 git://github.com/vim-scripts/rubycomplete.vim.git
+git://github.com/Lokaltog/vim-powerline.git
 "
 
 # clone/update bundles from git
