@@ -10,11 +10,13 @@ git://github.com/vim-scripts/molokai.git
 git://github.com/vim-scripts/pyte.git
 git://github.com/altercation/vim-colors-solarized.git
 git://github.com/tpope/vim-vividchalk.git
+git://github.com/sjl/badwolf.git
 "
 
-FAVORITES_DARK="anotherdark blacksea breeze camo candycode clarity dante darkZ darkblue2 desertEx dusk fnaqevan freya fruity inkpot jellybeans kellys lucius molokai moria mustang navajo-light neon no_quarter railscasts2 twilight vividchalk wombat zenburn"
+FAVORITES_DARK="anotherdark blacksea breeze camo candycode clarity dante darkZ darkblue2 desertEx dusk fnaqevan freya fruity inkpot jellybeans kellys lucius molokai molokai-rufiao moria mustang navajo-light neon no_quarter railscasts2 badwolf twilight vividchalk wombat zenburn"
 FAVORITES_LIGHT="autumn2 bclear buttercream dawn eclipse fog fruit github habilight ironman nuvola pyte rufiao tolerable"
 FAVORITES="$FAVORITES_DARK"
+#FAVORITES="$FAVORITES_LIGHT"
 #FAVORITES="all"
 
 mkdir -p colors/repos

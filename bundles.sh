@@ -1,15 +1,19 @@
 #!/bin/sh
 
-GIT_BUNDLES="
-git://github.com/wincent/Command-T.git
+GIT_BUNDLES_RETIRED="
 git://github.com/vim-scripts/FuzzyFinder.git
-git://github.com/vim-scripts/L9.git
 git://github.com/mileszs/ack.vim.git
+git://github.com/wincent/Command-T.git
+"
+
+GIT_BUNDLES="
+git://github.com/kien/ctrlp.vim.git
+git://github.com/scrooloose/nerdtree.git
+git://github.com/vim-scripts/L9.git
 git://github.com/tpope/vim-fugitive.git
 git://github.com/sjl/gundo.vim.git
 git://github.com/sjbach/lusty.git
 git://github.com/tpope/vim-markdown.git
-git://github.com/scrooloose/nerdtree.git
 git://github.com/tpope/vim-repeat.git
 git://github.com/ervandew/supertab.git
 git://github.com/tpope/vim-surround.git
@@ -26,6 +30,10 @@ git://github.com/ton/vim-bufsurf.git
 git://github.com/vim-scripts/camelcasemotion.git
 git://github.com/vim-scripts/rubycomplete.vim.git
 git://github.com/Lokaltog/vim-powerline.git
+git://github.com/vim-scripts/EasyGrep.git
+git://github.com/mbadran/headlights.git
+git://github.com/vim-scripts/taglist.vim.git
+git://github.com/Lokaltog/vim-easymotion.git
 "
 
 # clone/update bundles from git
@@ -40,7 +48,7 @@ for i in $GIT_BUNDLES; do
 done
 
 # command-t ruby build
-(cd bundle/Command-T && rake make)
+# (cd bundle/Command-T && rake make)
 
 # python support in syntastic
 sudo pip install pyflakes
