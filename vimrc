@@ -91,11 +91,14 @@ set spelllang=en_gb
 set listchars=tab:▸\ ,eol:¬
 
 " folders
-silent execute '!mkdir -p ~/.vim/tmp && for i in backup dir view undo fuf; do mkdir -p ~/.vim/tmp/$i; done'
+silent execute '!mkdir -p ~/.vim/tmp && for i in backup swap view undo fuf; do mkdir -p ~/.vim/tmp/$i; done'
 set backupdir=~/.vim/tmp/backup/
-set directory=~/.vim/tmp/dir/
+set directory=~/.vim/tmp/swap/
 set viewdir=~/.vim/tmp/view/
 set undodir=~/.vim/tmp/undo/
+
+" enable backups
+set backup
 
 " Tell vim to remember certain things when we exit
 "  '100  :  marks will be remembered for up to 100 previously edited files
