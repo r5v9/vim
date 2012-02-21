@@ -202,10 +202,10 @@ function! LoadSession()
 endfunction
 
 " au VimEnter * :call LoadSession()
-au VimLeave * :call MakeSession()
+" au VimLeave * :call MakeSession()
 
 " ,s reloads last session
-nnoremap <leader>s :call LoadSession()<CR>
+" nnoremap <leader>s :call LoadSession()<CR>
 
 " }}}
 
@@ -353,7 +353,7 @@ vnoremap <leader># <esc>`<i#{<esc>llv`>ll<esc>a}<esc>
 " :T converts all buffers into tabs
 :command! T exe ":tab sball"
 
-" :Z  strips all trailing whitespace in the current file
+" :Z strips all trailing whitespace in the current file
 :command! Z exe ":%s/\s\+$// | :let @/=''"
 
 " :R to execute ruby script
@@ -363,10 +363,10 @@ vnoremap <leader># <esc>`<i#{<esc>llv`>ll<esc>a}<esc>
 :command! P exe ":w | :! python %"
 
 " ,j to execute java class
-" nnoremap <leader>j :w<CR>:! javac -cp .:lib/* % && java %:s/.java//<CR>
+:command! J exe ":w | :! javac -cp .:lib/* % && java %:s/.java//"
 
 " ,J to execute java test
-" nnoremap <leader>J :w<CR>:! javac -cp .:lib/* % %:s/Test.java/.java/ && java -cp .:lib/* org.junit.runner.JUnitCore %:s/.java//<CR>
+:command! JT exe ":w| :! javac -cp .:lib/* % %:s/Test.java/.java/ && java -cp .:lib/* org.junit.runner.JUnitCore %:s/.java//"
 
 " :CC to execute c program
 :command! CC exe ":w | :! gcc % -o %:s/.c// && ./%:s/.c//"
