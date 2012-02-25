@@ -180,6 +180,11 @@ augroup END
 " endfunction
 " autocmd WinEnter * call AutoResize()
 
+" Leave insert mode after 15 seconds of no input: 
+au CursorHoldI * stopinsert 
+au InsertEnter * let updaterestore=&updatetime | set updatetime=15000 
+au InsertLeave * let &updatetime=updaterestore
+
 " }}}
 
 " Sessions ---------------------------------------------------------------- {{{
@@ -238,9 +243,6 @@ autocmd BufWinEnter .* silent loadview
 " Basic mappings ---------------------------------------------------------- {{{
 
 " clear out a search by typing ,,<space>
-" make ; do the same thing as :
-
-" nnoremap ; :
 nnoremap <leader><leader><space> :noh<cr>
 
 "make < > shifts keep selection
@@ -248,10 +250,8 @@ vnoremap < <gv
 vnoremap > >gv
 
 " navigate around tabs/buffers
-map <d-left> :tabprevious<CR>
-map <d-right> :tabnext<CR>
-map <d-a-left> :BufSurfBack<CR>
-map <d-a-right> :BufSurfForward<CR>
+map <d-left> :BufSurfBack<CR>
+map <d-right> :BufSurfForward<CR>
 nnoremap <leader>z :bd<CR>
 nnoremap <leader>l :LustyBufferExplorer<CR>
 
@@ -259,11 +259,29 @@ nnoremap <leader>l :LustyBufferExplorer<CR>
 " vmap <c-s-down> y`]o<esc>pv`]
 " vmap <c-s-up> yO<esc>P`[v`]
 
-" bubble lines (using unimpaired plugin)
-nmap <s-up> [e
-nmap <s-down> ]e
-vmap <s-up> [egv
-vmap <s-down> ]egv
+" bubble lines with ALT+[jk] (using unimpaired plugin)
+"a-j
+nmap ∆ ]e
+"a-k
+nmap ˚ [e
+"a-j
+vmap ∆ ]egv
+"a-k
+vmap ˚ [egv
+
+" indent with ALT+[hl]
+"a-h
+nnoremap ˙ <<
+"a-l
+nnoremap ¬ >>
+"a-h
+inoremap ˙ <Esc><<`]a
+"a-l
+inoremap ¬ <Esc>>>`]a
+"a-h
+vnoremap ˙ <gv
+"a-l
+vnoremap ¬ >gv
 
 " control-j/k/h/l move to split up/down/left/right
 map <C-j> <C-W>j
@@ -272,14 +290,23 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " control-+/- to resize splits
-" map <silent><Leader>=
+nnoremap <silent>== <C-w>>
+nnoremap <silent>-- <C-w><
 
 " ,v reselect the text that was just pasted
 " nnoremap <leader>v V`]
 
-" remap jk as ESC
+" remap jk and kj as ESC
 inoremap jk <esc>
+inoremap kj <esc>
 inoremap <esc> <nop>
+
+" make better use of H and L
+map H ^
+map L $
+
+" make better use of ;
+nnoremap ; :
 
 " ,w/W for horizontal/vertical splits
 nnoremap <leader>w <C-w>v<C-w>l
@@ -320,13 +347,6 @@ vnoremap <leader>" <esc>`<i"<esc>lv`>l<esc>a"<esc>
 vnoremap <leader>' <esc>`<i'<esc>lv`>l<esc>a'<esc>
 vnoremap <leader>( <esc>`<i(<esc>lv`>l<esc>a)<esc>
 vnoremap <leader># <esc>`<i#{<esc>llv`>ll<esc>a}<esc>
-
-" auto wrapping
-" inoremap " ""<left>
-" inoremap ' ''<left>
-" inoremap ( ()<left>
-" inoremap [ []<left>
-" inoremap { {}<left>
 
 " }}}
 
@@ -404,9 +424,23 @@ set laststatus=2
 " use newer ctags from homebrew
 let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
 
+" NERDTree
+let NERDChristmasTree=1
+let NERDTreeMouseMode=3
+let NERDTreeBookmarksFile=$HOME.'/vim/tmp/NERDTreeBookmarks'
+let NERDTreeShowHidden=1
+
+" Ctrl-P
+let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_cache_dir = $HOME.'/.vim/tmp/ctrlp'
+
 " }}}
 
 " Plugin mappings --------------------------------------------------------- {{{
+
+" nerdtree
+nnoremap <d-d> :NERDTreeToggle<cr>
 
 " peepopen
 " map ,, :PeepOpen<CR><CR>
@@ -426,23 +460,4 @@ nnoremap <leader>a :Ack<space>
 " nnoremap <leader>v :YRShow<CR>
 
 " }}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

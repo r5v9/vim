@@ -1,9 +1,13 @@
 #!/bin/sh
 
 GIT_BUNDLES_RETIRED="
-git://github.com/vim-scripts/FuzzyFinder.git
 git://github.com/mileszs/ack.vim.git
 git://github.com/wincent/Command-T.git
+git://github.com/ervandew/supertab.git
+git://github.com/vim-scripts/camelcasemotion.git
+git://github.com/vim-scripts/tComment.git
+git://github.com/Raimondi/delimitMate.git
+git://github.com/vim-scripts/FuzzyFinder.git
 "
 
 GIT_BUNDLES="
@@ -15,19 +19,17 @@ git://github.com/sjl/gundo.vim.git
 git://github.com/sjbach/lusty.git
 git://github.com/tpope/vim-markdown.git
 git://github.com/tpope/vim-repeat.git
-git://github.com/ervandew/supertab.git
 git://github.com/tpope/vim-surround.git
+git://github.com/tpope/vim-commentary.git
 git://github.com/scrooloose/syntastic.git
 git://github.com/timcharper/textile.vim.git
 git://github.com/tpope/vim-unimpaired.git
 git://github.com/vim-scripts/ZoomWin.git
 git://github.com/godlygeek/tabular.git
-git://github.com/vim-scripts/tComment.git
 git://github.com/tsaleh/vim-matchit.git
 git://github.com/tpope/vim-surround.git
 git://github.com/vim-scripts/ScrollColors.git
 git://github.com/ton/vim-bufsurf.git
-git://github.com/vim-scripts/camelcasemotion.git
 git://github.com/vim-scripts/rubycomplete.vim.git
 git://github.com/Lokaltog/vim-powerline.git
 git://github.com/vim-scripts/EasyGrep.git
