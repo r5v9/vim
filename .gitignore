@@ -7,3 +7,4 @@ bundle
 colors/repos
 colors/all
 colors/*.vim
+autoload

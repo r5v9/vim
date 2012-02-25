@@ -1,9 +1,14 @@
 
 " Preamble ---------------------------------------------------------------- {{{
 
+let g:pathogen_disabled=[]
+if !has("python")
+  call add(g:pathogen_disabled, 'headlights')
+endif
+
 " load pathogen (all plugins in the bundles folder)
 filetype off
-call pathogen#runtime_append_all_bundles()
+call pathogen#infect()
 call pathogen#helptags()
 filetype plugin indent on
 
@@ -106,7 +111,7 @@ set backup
 "  :100  :  up to 100 lines of command-line history will be remembered
 "  %     :  saves and restores the buffer list
 "  n...  :  where to save the viminfo files
-set viminfo='100,\"1000,:100,%,n~/.vim/tmp/viminfo
+set viminfo='100,\"1000,:100,n~/.vim/tmp/viminfo
 
 " improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
@@ -152,6 +157,7 @@ if has("gui_macvim")
   " set relativenumber
   " autocmd BufEnter * set relativenumber
   set undofile
+  set macmeta
 endif
 
 " }}}
@@ -189,31 +195,31 @@ au InsertLeave * let &updatetime=updaterestore
 
 " Sessions ---------------------------------------------------------------- {{{
 
-function! MakeSession()
-  let b:sessiondir = $HOME . "/.vim/tmp"
-  if (filewritable(b:sessiondir) != 2)
-    exe 'silent !mkdir -p ' b:sessiondir
-    redraw!
-  endif
-  let b:filename = b:sessiondir . "/session"
-  exe "mksession! " . b:filename
-endfunction
+" function! MakeSession()
+"   let b:sessiondir = $HOME . "/.vim/tmp"
+"   if (filewritable(b:sessiondir) != 2)
+"     exe 'silent !mkdir -p ' b:sessiondir
+"     redraw!
+"   endif
+"   let b:filename = b:sessiondir . "/session"
+"   exe "mksession! " . b:filename
+" endfunction
 
-function! LoadSession()
-  let b:sessiondir = $HOME . "/.vim/tmp"
-  let b:sessionfile = b:sessiondir . "/session"
-  if (filereadable(b:sessionfile))
-    exe 'source ' b:sessionfile
-  else
-    echo "No session loaded."
-  endif
-endfunction
+" function! LoadSession()
+"   let b:sessiondir = $HOME . "/.vim/tmp"
+"   let b:sessionfile = b:sessiondir . "/session"
+"   if (filereadable(b:sessionfile))
+"     exe 'source ' b:sessionfile
+"   else
+"     echo "No session loaded."
+"   endif
+" endfunction
 
 " au VimEnter * :call LoadSession()
 " au VimLeave * :call MakeSession()
 
 " ,s reloads last session
-" nnoremap <leader>s :call LoadSession()<CR>
+" nnoremap <leader>s :call LoadSession()<cr>
 
 " }}}
 
@@ -243,17 +249,19 @@ autocmd BufWinEnter .* silent loadview
 " Basic mappings ---------------------------------------------------------- {{{
 
 " clear out a search by typing ,,<space>
-nnoremap <leader><leader><space> :noh<cr>
-
+nnoremap <leader><space> :noh<cr>
+ 
 "make < > shifts keep selection
 vnoremap < <gv
 vnoremap > >gv
 
 " navigate around tabs/buffers
-map <d-left> :BufSurfBack<CR>
-map <d-right> :BufSurfForward<CR>
-nnoremap <leader>z :bd<CR>
-nnoremap <leader>l :LustyBufferExplorer<CR>
+nnoremap <d-9> :bprev<cr>
+nnoremap <d-0> :bnext<cr>
+" nnoremap <d-¹> :BufSurfBack<cr>
+" nnoremap <d-°> :BufSurfForward<cr>
+nnoremap <leader>z :bd<cr>
+nnoremap ` :b#<cr>
 
 " copy blocks of text using shift-up/down
 " vmap <c-s-down> y`]o<esc>pv`]
@@ -261,27 +269,27 @@ nnoremap <leader>l :LustyBufferExplorer<CR>
 
 " bubble lines with ALT+[jk] (using unimpaired plugin)
 "a-j
-nmap ∆ ]e
+nmap ê ]e
 "a-k
-nmap ˚ [e
+nmap ë [e
 "a-j
-vmap ∆ ]egv
+vmap ê ]egv
 "a-k
-vmap ˚ [egv
+vmap ë [egv
 
 " indent with ALT+[hl]
 "a-h
-nnoremap ˙ <<
+nnoremap è <<
 "a-l
-nnoremap ¬ >>
+nnoremap ì >>
 "a-h
-inoremap ˙ <Esc><<`]a
+inoremap è <Esc><<`]a
 "a-l
-inoremap ¬ <Esc>>>`]a
+inoremap ì <Esc>>>`]a
 "a-h
-vnoremap ˙ <gv
+vnoremap è <gv
 "a-l
-vnoremap ¬ >gv
+vnoremap ì >gv
 
 " control-j/k/h/l move to split up/down/left/right
 map <C-j> <C-W>j
@@ -296,9 +304,10 @@ nnoremap <silent>-- <C-w><
 " ,v reselect the text that was just pasted
 " nnoremap <leader>v V`]
 
-" remap jk and kj as ESC
+" remap ESC
 inoremap jk <esc>
 inoremap kj <esc>
+" inoremap ; <esc>
 inoremap <esc> <nop>
 
 " make better use of H and L
@@ -316,7 +325,7 @@ nnoremap <leader>W <C-w>s<C-w>j
 " nnoremap <leader>z <C-w>o
 
 " ,r reformats file
-nnoremap <leader>r gg=G``<CR>
+nnoremap <leader>r gg=G``<cr>
 
 " disable the arrow keys while you’re in normal mode to help you learn to use hjkl
 nnoremap <up> <nop>
@@ -439,25 +448,31 @@ let g:ctrlp_cache_dir = $HOME.'/.vim/tmp/ctrlp'
 
 " Plugin mappings --------------------------------------------------------- {{{
 
-" nerdtree
-nnoremap <d-d> :NERDTreeToggle<cr>
-
 " peepopen
-" map ,, :PeepOpen<CR><CR>
-map <leader><space> :PeepOpen<CR><CR>
+" map ,, :PeepOpen<cr><cr>
+" map <leader><space> :PeepOpen<cr><cr>
 
-" use ,t to open ctrlp
+" ,t opens ctrlp
 let g:ctrlp_map = '<leader>t'
-nnoremap <leader>b :CtrlPBuffer<cr>
+nnoremap <leader>l :CtrlPBuffer<cr>
+
+" ,l opens lusty buffer explorer
+" nnoremap <leader>l :LustyBufferExplorer<cr>
 
 " ,a opens ACK
 nnoremap <leader>a :Ack<space>
 
+" ,g opens Grep
+nnoremap <leader>g :Grep<space>
+
 " ,y toggles nerdtree
-" nnoremap <leader>y :NERDTreeToggle<CR>
+nnoremap <leader>y :NERDTreeToggle<cr>
 
 " ,h shows yankring history
-" nnoremap <leader>v :YRShow<CR>
+" nnoremap <leader>v :YRShow<cr>
+
+" nerdtree
+" nnoremap <d-d> :NERDTreeToggle<cr>
 
 " }}}
 
