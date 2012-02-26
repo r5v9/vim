@@ -36,6 +36,8 @@ git://github.com/Lokaltog/vim-easymotion.git
 git://github.com/vim-scripts/buftabs.git
 git://github.com/ton/vim-bufsurf.git
 git://github.com/vim-scripts/snipMate.git
+git://github.com/xolox/vim-easytags.git
+git://github.com/ecomba/vim-ruby-refactoring.git
 "
 
 # pathogen

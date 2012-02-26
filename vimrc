@@ -17,7 +17,8 @@ filetype plugin indent on
 " Basic options ----------------------------------------------------------- {{{
 
 "set font and color scheme
-colorscheme zenburn
+" colorscheme zenburn
+colorscheme molokai-rufiao
 
 " gets rid of all the crap that Vim does to be vi compatible
 set nocompatible
@@ -81,7 +82,7 @@ set showmatch
 set hlsearch
 
 " disable blinking cursor
-set gcr=a:blinkwait0,a:block-cursor
+" set gcr=a:blinkwait0,a:block-cursor
 
 " handle long lines
 "set wrap
@@ -96,7 +97,7 @@ set spelllang=en_gb
 set listchars=tab:▸\ ,eol:¬
 
 " folders
-silent execute '!mkdir -p ~/.vim/tmp && for i in backup swap view undo fuf; do mkdir -p ~/.vim/tmp/$i; done'
+silent execute '!mkdir -p ~/.vim/tmp && for i in backup swap view undo fuf tags; do mkdir -p ~/.vim/tmp/$i; done'
 set backupdir=~/.vim/tmp/backup/
 set directory=~/.vim/tmp/swap/
 set viewdir=~/.vim/tmp/view/
@@ -261,11 +262,12 @@ nnoremap <d-0> :bnext<cr>
 " nnoremap <d-¹> :BufSurfBack<cr>
 " nnoremap <d-°> :BufSurfForward<cr>
 nnoremap <leader>z :bd<cr>
-nnoremap ` :b#<cr>
+" nnoremap ` :b#<cr>
+nnoremap ' :b#<cr>
 
-" copy blocks of text using shift-up/down
-" vmap <c-s-down> y`]o<esc>pv`]
-" vmap <c-s-up> yO<esc>P`[v`]
+" copy blocks of text using command-alt-up/down
+vmap <M-D-k> yPv`]
+vmap <M-D-j> y`]pv`]
 
 " bubble lines with ALT+[jk] (using unimpaired plugin)
 "a-j
@@ -362,10 +364,10 @@ vnoremap <leader># <esc>`<i#{<esc>llv`>ll<esc>a}<esc>
 " Commands ---------------------------------------------------------------- {{{
 
 ":V edits .vimrc
-:command! V exe "e ~/.vimrc"
+:command! V exe "e ~/.vim/vimrc"
 
 ":VV reloads .vimrc
-:command! VV exe "w | source ~/.vimrc | filetype detect | echo 'vimrc reloaded'"
+:command! VV exe "w | mkview | source ~/.vimrc | filetype detect | echo 'vimrc reloaded'"
 
 " :C opens !/.vim/cheasheet.txt
 :command! C exe "e ~/.vim/cheasheet.txt"
@@ -443,6 +445,16 @@ let NERDTreeShowHidden=1
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_cache_dir = $HOME.'/.vim/tmp/ctrlp'
+
+" buftabs
+:let g:buftabs_only_basename=1
+
+" easytags
+let g:easytags_cmd = '/usr/local/bin/ctags'
+let g:easytags_file = '~/.vim/tmp/tags/all'
+let g:easytags_by_filetype = '~/.vim/tmp/tags/'
+" set tags=./tags;
+" let g:easytags_dynamic_files = 1
 
 " }}}
 
