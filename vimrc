@@ -220,9 +220,9 @@ augroup END
 " autocmd WinEnter * call AutoResize()
 
 " Leave insert mode after 15 seconds of no input: 
-au CursorHoldI * stopinsert 
-au InsertEnter * let updaterestore=&updatetime | set updatetime=15000 
-au InsertLeave * let &updatetime=updaterestore
+" au CursorHoldI * stopinsert 
+" au InsertEnter * let updaterestore=&updatetime | set updatetime=15000 
+" au InsertLeave * let &updatetime=updaterestore
 
 " }}}
 
@@ -282,6 +282,9 @@ autocmd FileType vim setlocal foldmethod=marker
 " persist fold status
 autocmd BufWinLeave .* mkview
 autocmd BufWinEnter .* silent loadview
+
+" disable auto comments
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " }}}
 
