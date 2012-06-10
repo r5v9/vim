@@ -10,15 +10,19 @@ endif
 filetype off
 call pathogen#infect()
 call pathogen#helptags()
+
+set rtp+=$GOROOT/misc/vim
+
 filetype plugin indent on
+syntax on
 
 " }}}
 
 " Basic options ----------------------------------------------------------- {{{
 
 "set font and color scheme
-" colorscheme zenburn
-colorscheme molokai-rufiao
+colorscheme zenburn
+" colorscheme molokai-rufiao
 
 " gets rid of all the crap that Vim does to be vi compatible
 set nocompatible
@@ -43,7 +47,7 @@ set foldlevelstart=20
 
 " just make things better
 set encoding=utf-8
-set scrolloff=3
+set scrolloff=1
 set autoindent
 set showmode! " disable showmode, as powerline shows it
 set showcmd
@@ -133,6 +137,9 @@ function! MyFoldText() " {{{
   return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
 endfunction " }}}
 set foldtext=MyFoldText()
+
+" allow _ to separate words
+" set iskeyword-=_
 
 " }}}
 
@@ -226,6 +233,10 @@ au InsertLeave * let &updatetime=updaterestore
 
 " Laguages ---------------------------------------------------------------- {{{
 
+" omnicomplete
+set ofu=syntaxcomplete#Complete
+inoremap <C-space> <C-x><C-o>
+
 " ruby file types
 au BufNewFile,BufRead [vV]agrantfile     set filetype=ruby
 au BufNewFile,BufRead Gemfile            set filetype=ruby
@@ -237,6 +248,8 @@ autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+
+set tags=~/Projects/rea/current/tags
 
 " use markers for folds in .vimrc and other vim files
 autocmd FileType vim setlocal foldmethod=marker
@@ -307,10 +320,9 @@ nnoremap <silent>-- <C-w><
 " nnoremap <leader>v V`]
 
 " remap ESC
-inoremap jk <esc>
-inoremap kj <esc>
+inoremap jj <esc>
 " inoremap ; <esc>
-inoremap <esc> <nop>
+" inoremap <esc> <nop>
 
 " make better use of H and L
 map H ^
@@ -450,9 +462,9 @@ let g:ctrlp_cache_dir = $HOME.'/.vim/tmp/ctrlp'
 :let g:buftabs_only_basename=1
 
 " easytags
-let g:easytags_cmd = '/usr/local/bin/ctags'
-let g:easytags_file = '~/.vim/tmp/tags/all'
-let g:easytags_by_filetype = '~/.vim/tmp/tags/'
+" let g:easytags_cmd = '/usr/local/bin/ctags'
+" let g:easytags_file = '~/.vim/tmp/tags/all'
+" let g:easytags_by_filetype = '~/.vim/tmp/tags/'
 " set tags=./tags;
 " let g:easytags_dynamic_files = 1
 

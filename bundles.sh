@@ -10,6 +10,11 @@ git://github.com/Raimondi/delimitMate.git
 git://github.com/vim-scripts/FuzzyFinder.git
 git://github.com/sjbach/lusty.git
 git://github.com/vim-scripts/ZoomWin.git
+git://github.com/xolox/vim-easytags.git
+git://github.com/ecomba/vim-ruby-refactoring.git
+git://github.com/vim-scripts/snipMate.git
+git://github.com/Lokaltog/vim-easymotion.git
+git://github.com/vim-scripts/rubycomplete.vim.git
 "
 
 GIT_BUNDLES="
@@ -32,12 +37,10 @@ git://github.com/Lokaltog/vim-powerline.git
 git://github.com/vim-scripts/EasyGrep.git
 git://github.com/mbadran/headlights.git
 git://github.com/vim-scripts/taglist.vim.git
-git://github.com/Lokaltog/vim-easymotion.git
 git://github.com/vim-scripts/buftabs.git
 git://github.com/ton/vim-bufsurf.git
-git://github.com/vim-scripts/snipMate.git
-git://github.com/xolox/vim-easytags.git
-git://github.com/ecomba/vim-ruby-refactoring.git
+git://github.com/vim-scripts/AutoTag.git
+git://github.com/vim-scripts/slimv.vim.git
 "
 
 # pathogen
@@ -60,8 +63,14 @@ for i in $GIT_BUNDLES; do
   fi
 done
 
-# command-t ruby build
-# (cd bundle/Command-T && rake make)
+# # go
+# rm -rf bundle/go
+# mkdir -p bundle/go/ftdetect
+# mkdir -p bundle/go/syntax
+# mkdir -p bundle/go/autoload
+# ln -s $GOROOT/misc/vim/ftdetect/gofiletype.vim bundle/go/ftdetect
+# ln -s $GOROOT/misc/vim/syntax/go.vim bundle/go/syntax
+# ln -s $GOROOT/misc/vim/autoload/go/complete.vim bundle/go/autoload
 
 # python support in syntastic
 sudo pip install pyflakes
