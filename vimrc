@@ -32,6 +32,8 @@ Bundle 'vim-scripts/taglist.vim'
 Bundle 'vim-scripts/buftabs'
 Bundle 'ton/vim-bufsurf'
 Bundle 'vim-scripts/AutoTag'
+Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neocomplcache-snippets-complete'
 
 " color schemes
 Bundle 'Zenburn'
@@ -126,7 +128,7 @@ set spelllang=en_gb
 set listchars=tab:▸\ ,eol:¬
 
 " folders
-silent execute '!mkdir -p ~/.vim/tmp && for i in backup swap view undo fuf tags; do mkdir -p ~/.vim/tmp/$i; done'
+silent execute '!mkdir -p ~/.vim/tmp && for i in backup swap view undo fuf; do mkdir -p ~/.vim/tmp/$i; done'
 set backupdir=~/.vim/tmp/backup/
 set directory=~/.vim/tmp/swap/
 set viewdir=~/.vim/tmp/view/
@@ -224,6 +226,12 @@ augroup END
 " au InsertEnter * let updaterestore=&updatetime | set updatetime=15000 
 " au InsertLeave * let &updatetime=updaterestore
 
+" Don't screw up folds when inserting text that might affect them, until leaving insert mode. 
+" Foldmethod is local to the window.
+" This also avoids folds to slow down vim while in edit mode
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+
 " }}}
 
 " Sessions ---------------------------------------------------------------- {{{
@@ -269,12 +277,24 @@ au BufNewFile,BufRead Capfile            set filetype=ruby
 au BufNewFile,BufRead [rR]akefile,*.rake set filetype=ruby
 
 " ruby autocomplete
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+if has("ruby")
+  autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+  autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+  autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+  autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+endif
 
-set tags=~/Projects/rea/current/tags
+if has("python")
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+end
+
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+exec "set tags=".fnamemodify('.',':p:p')."tags"
+exec "set tags+=".fnamemodify('.',':p:p')."../tags"
 
 " use markers for folds in .vimrc and other vim files
 autocmd FileType vim setlocal foldmethod=marker
@@ -491,10 +511,47 @@ let g:ctrlp_cache_dir = $HOME.'/.vim/tmp/ctrlp'
 
 " easytags
 " let g:easytags_cmd = '/usr/local/bin/ctags'
-" let g:easytags_file = '~/.vim/tmp/tags/all'
-" let g:easytags_by_filetype = '~/.vim/tmp/tags/'
+" let g:easytags_file = '~/.vim/tmp/easytags/all'
+" let g:easytags_by_filetype = '~/.vim/tmp/easytags/'
 " set tags=./tags;
 " let g:easytags_dynamic_files = 1
+
+" neocomplcache
+" disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" use camel case completion.
+let g:neocomplcache_enable_camel_case_completion = 1
+" use underbar completion.
+let g:neocomplcache_enable_underbar_completion = 1
+" set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+" key-mappings.
+imap <C-k> <Plug>(neocomplcache_snippets_expand)
+smap <C-k> <Plug>(neocomplcache_snippets_expand)
+inoremap <expr><C-g> neocomplcache#undo_completion()
+inoremap <expr><C-l> neocomplcache#complete_common_string()
+" <CR>: close popup and save indent.
+inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+" enable heavy omni completion.
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
 " }}}
 
