@@ -1,20 +1,49 @@
 
-" Preamble ---------------------------------------------------------------- {{{
+" Bundles ---------------------------------------------------------------- {{{
 
-let g:pathogen_disabled=[]
-if !has("python")
-  call add(g:pathogen_disabled, 'headlights')
+" gets rid of all the crap that Vim does to be vi compatible
+set nocompatible
+
+filetype off  
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+
+Bundle 'vim-scripts/L9'
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-commentary'
+Bundle 'scrooloose/syntastic'
+Bundle 'timcharper/textile.vim'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'godlygeek/tabular'
+Bundle 'tsaleh/vim-matchit'
+Bundle 'tpope/vim-surround'
+Bundle 'vim-scripts/ScrollColors'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'vim-scripts/EasyGrep'
+Bundle 'vim-scripts/taglist.vim'
+Bundle 'vim-scripts/buftabs'
+Bundle 'ton/vim-bufsurf'
+Bundle 'vim-scripts/AutoTag'
+
+" color schemes
+Bundle 'Zenburn'
+Bundle 'molokai'
+
+if has("python")
+  Bundle 'sjl/gundo.vim'
+  Bundle 'mbadran/headlights'
+  Bundle 'vim-scripts/slimv.vim'
 endif
 
-" load pathogen (all plugins in the bundles folder)
-filetype off
-call pathogen#infect()
-call pathogen#helptags()
-
-set rtp+=$GOROOT/misc/vim
-
 filetype plugin indent on
-syntax on
 
 " }}}
 
@@ -22,10 +51,6 @@ syntax on
 
 "set font and color scheme
 colorscheme zenburn
-" colorscheme molokai-rufiao
-
-" gets rid of all the crap that Vim does to be vi compatible
-set nocompatible
 
 " prevents some security exploits having to do with modelines in files
 " see http://lists.alioth.debian.org/pipermail/pkg-vim-maintainers/2007-June/004020.html
