@@ -306,6 +306,9 @@ autocmd BufWinEnter .* silent loadview
 " disable auto comments
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+" lisp rainbow parens
+let g:lisp_rainbow=1
+
 " }}}
 
 " Basic mappings ---------------------------------------------------------- {{{
@@ -378,10 +381,6 @@ map L $
 
 " make better use of ;
 nnoremap ; :
-
-" ,w/W for horizontal/vertical splits
-nnoremap <leader>w <C-w>v<C-w>l
-nnoremap <leader>W <C-w>s<C-w>j
 
 " ,z to zoom in/out splits
 " nnoremap <leader>z <C-w>o
