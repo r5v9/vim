@@ -34,6 +34,8 @@ Bundle 'ton/vim-bufsurf'
 Bundle 'vim-scripts/AutoTag'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neocomplcache-snippets-complete'
+Bundle 'shemerey/vim-peepopen'
+Bundle 'mileszs/ack.vim'
 
 " color schemes
 Bundle 'Zenburn'
@@ -309,13 +311,16 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " lisp rainbow parens
 let g:lisp_rainbow=1
 
+" slimv repl syntax coloring
+let g:slimv_repl_syntax = 1
+
 " }}}
 
 " Basic mappings ---------------------------------------------------------- {{{
 
 " clear out a search by typing ,,<space>
 nnoremap <leader><space> :noh<cr>
- 
+
 "make < > shifts keep selection
 vnoremap < <gv
 vnoremap > >gv
@@ -499,6 +504,7 @@ let NERDChristmasTree=1
 let NERDTreeMouseMode=3
 let NERDTreeBookmarksFile=$HOME.'/vim/tmp/NERDTreeBookmarks'
 let NERDTreeShowHidden=1
+let NERDTreeDirArrows=1
 
 " Ctrl-P
 let g:ctrlp_match_window_bottom = 0
@@ -557,8 +563,7 @@ let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 " Plugin mappings --------------------------------------------------------- {{{
 
 " peepopen
-" map ,, :PeepOpen<cr><cr>
-" map <leader><space> :PeepOpen<cr><cr>
+map <leader><space> :PeepOpen<cr><cr>
 
 " ,t opens ctrlp
 let g:ctrlp_map = '<leader>t'
@@ -581,6 +586,24 @@ nnoremap <leader>y :NERDTreeToggle<cr>
 
 " nerdtree
 " nnoremap <d-d> :NERDTreeToggle<cr>
+
+" Waldo
+if ! exists("g:waldo_loaded")
+  let g:waldo_loaded = 1
+  let s:save_cpo = &cpo
+  set cpo&vim
+  function s:LaunchWaldoViaVim()
+    let cwd = getcwd()
+    silent exe  "!open -a Waldo " . shellescape(cwd)
+    silent exe  "!open -a Waldo " . shellescape(cwd)
+  endfunction
+  command! Waldo :call <SID>LaunchWaldoViaVim()
+  noremap <unique> <script> <Plug>Waldo <SID>Launch
+  noremap <SID>Launch :call <SID>LaunchWaldoViaVim()<CR>
+  if !hasmapto('<Plug>Waldo')
+    map <unique> <silent> <Leader>f <Plug>Waldo
+  endif
+endif
 
 " }}}
 
