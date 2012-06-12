@@ -13,27 +13,27 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'vim-scripts/L9'
-Bundle 'kien/ctrlp.vim'
+Bundle 'vim-scripts/EasyGrep'
+Bundle 'vim-scripts/taglist.vim'
+Bundle 'vim-scripts/buftabs'
+Bundle 'vim-scripts/AutoTag'
+Bundle 'vim-scripts/ScrollColors'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-commentary'
-Bundle 'scrooloose/syntastic'
-Bundle 'timcharper/textile.vim'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'godlygeek/tabular'
-Bundle 'tsaleh/vim-matchit'
 Bundle 'tpope/vim-surround'
-Bundle 'vim-scripts/ScrollColors'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'vim-scripts/EasyGrep'
-Bundle 'vim-scripts/taglist.vim'
-Bundle 'vim-scripts/buftabs'
-Bundle 'ton/vim-bufsurf'
-Bundle 'vim-scripts/AutoTag'
+Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neocomplcache-snippets-complete'
+Bundle 'kien/ctrlp.vim'
+Bundle 'timcharper/textile.vim'
+Bundle 'godlygeek/tabular'
+Bundle 'tsaleh/vim-matchit'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'ton/vim-bufsurf'
 Bundle 'shemerey/vim-peepopen'
 Bundle 'mileszs/ack.vim'
 
@@ -53,14 +53,20 @@ filetype plugin indent on
 
 " Basic options ----------------------------------------------------------- {{{
 
-"set font and color scheme
+" patch the color scheme after it's loaded
+augroup patchcolorscheme
+  autocmd ColorScheme * highlight VertSplit guifg=#2e3330 guibg=#2e3330
+augroup END
+
+" set color scheme
 colorscheme zenburn
+let g:zenburn_old_Visual = 1
 
 " prevents some security exploits having to do with modelines in files
 " see http://lists.alioth.debian.org/pipermail/pkg-vim-maintainers/2007-June/004020.html
 set modelines=0
 
-" tab setttings. expand tabs to spaces, use width 4
+" tab setttings. expand tabs to spaces, use width 2
 " see http://vimcasts.org/episodes/tabs-and-spaces/
 set tabstop=2
 set shiftwidth=2
@@ -88,7 +94,6 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
-set number
 set nonumber
 
 " ignore binary files
@@ -124,7 +129,7 @@ set hlsearch
 "set colorcolumn=120
 
 " Set region to British English
-set spelllang=en_gb
+"set spelllang=en_gb
 
 " use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
@@ -146,9 +151,6 @@ set backup
 "  %     :  saves and restores the buffer list
 "  n...  :  where to save the viminfo files
 set viminfo='100,\"1000,:100,n~/.vim/tmp/viminfo
-
-" improve autocomplete menu color
-highlight Pmenu ctermbg=238 gui=bold
 
 function! MyFoldText() " {{{
   let line = getline(v:foldstart)
@@ -270,7 +272,7 @@ autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:las
 
 " omnicomplete
 set ofu=syntaxcomplete#Complete
-inoremap <C-space> <C-x><C-o>
+"inoremap <C-space> <C-x><C-o>
 
 " ruby file types
 au BufNewFile,BufRead [vV]agrantfile     set filetype=ruby
@@ -314,11 +316,14 @@ let g:lisp_rainbow=1
 " slimv repl syntax coloring
 let g:slimv_repl_syntax = 1
 
+" open repl in a vertical split on the right
+let g:slimv_repl_split = 4
+
 " }}}
 
 " Basic mappings ---------------------------------------------------------- {{{
 
-" clear out a search by typing ,,<space>
+" clear out a search by typing ,<space>
 nnoremap <leader><space> :noh<cr>
 
 "make < > shifts keep selection
@@ -511,6 +516,9 @@ let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_cache_dir = $HOME.'/.vim/tmp/ctrlp'
 
+" nerdcommenter
+let g:NERDCreateDefaultMappings = 0
+
 " buftabs
 :let g:buftabs_only_basename=1
 
@@ -580,6 +588,10 @@ nnoremap <leader>g :Grep<space>
 
 " ,y toggles nerdtree
 nnoremap <leader>y :NERDTreeToggle<cr>
+
+" \\ toggles comments
+nnoremap \\ :call NERDComment("n", "toggle")<CR>
+vnoremap \\ :call NERDComment("n", "toggle")<CR>gv
 
 " ,h shows yankring history
 " nnoremap <leader>v :YRShow<cr>
