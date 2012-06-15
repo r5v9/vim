@@ -1,9 +1,16 @@
 
 " basic options ----------------------------------------------------------- {{{
 
+function! PatchZenburn()
+  " make the vertical split separator look like a dar bar
+  highlight VertSplit guifg=#2e3330 guibg=#2e3330
+  " create a left margin by using the foldcolumn
+  set foldcolumn=1
+  highlight FoldColumn guibg=#3f3f3f guifg=#3f3f3f
+endfunction
 " patch the color scheme after it's loaded
 augroup patchcolorscheme
-  autocmd ColorScheme * highlight VertSplit guifg=#2e3330 guibg=#2e3330
+  autocmd ColorScheme * call PatchZenburn()
 augroup END
 
 " set color scheme

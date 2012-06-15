@@ -34,7 +34,7 @@ Bundle 'tsaleh/vim-matchit'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'ton/vim-bufsurf'
 Bundle 'mileszs/ack.vim'
-Bundle 'msanders/snipmate.vim'
+"Bundle 'msanders/snipmate.vim'
 
 " color schemes
 Bundle 'Zenburn'
