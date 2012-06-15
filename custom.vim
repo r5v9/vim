@@ -115,34 +115,38 @@ let g:NERDCreateDefaultMappings = 0
 " set tags=./tags;
 " let g:easytags_dynamic_files = 1
 
-" neocomplcache
+" }}}
+
+" neocomplcache ---------------------------------------------------------- {{{
+
 " disable AutoComplPop.
 let g:acp_enableAtStartup = 0
+
 " use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
+
 " use smartcase.
 let g:neocomplcache_enable_smart_case = 1
+
 " use camel case completion.
 let g:neocomplcache_enable_camel_case_completion = 1
+
 " use underbar completion.
 let g:neocomplcache_enable_underbar_completion = 1
+
 " set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
 " key-mappings.
 imap <C-k> <Plug>(neocomplcache_snippets_expand)
 smap <C-k> <Plug>(neocomplcache_snippets_expand)
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
-" <CR>: close popup and save indent.
-inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
 " enable heavy omni completion.
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
