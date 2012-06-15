@@ -9,7 +9,6 @@ set nocompatible
 set modelines=0
 
 " tab setttings. expand tabs to spaces, use width 2
-" see http://vimcasts.org/episodes/tabs-and-spaces/
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -62,14 +61,8 @@ set nonumber
 " ignore binary files
 set wildignore+=*.o,*.obj,.git,*.class,*.jar,*.pyc
 
-" use , as the leader key
-let mapleader = ","
-
-" fix broken default regex handling by automatically inserting a \v before any string you search for
-"nnoremap / /\v
-"vnoremap / /\v
-
-" if you search for an all-lowercase string your search will be case-insensitive, but if one or more characters is uppercase the search will be case-sensitive
+" if you search for an all-lowercase string your search will be case-insensitive, 
+" but if one or more characters is uppercase the search will be case-sensitive
 set ignorecase
 set smartcase
 
@@ -85,7 +78,7 @@ set hlsearch
 set listchars=tab:▸\ ,eol:¬
 
 " folders
-silent execute '!mkdir -p ~/.vim/tmp && for i in backup swap view undo fuf; do mkdir -p ~/.vim/tmp/$i; done'
+silent execute '!mkdir -p ~/.vim/tmp && for i in backup swap view undo; do mkdir -p ~/.vim/tmp/$i; done'
 set backupdir=~/.vim/tmp/backup/
 set directory=~/.vim/tmp/swap/
 set viewdir=~/.vim/tmp/view/
@@ -108,6 +101,9 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " }}}
 
 " basic mappings ---------------------------------------------------------- {{{
+
+" use , as the leader key
+let mapleader = ","
 
 " clear out a search by typing ,/
 nnoremap <leader>/ :noh<cr>
@@ -148,7 +144,7 @@ vnoremap è <gv
 "a-l
 vnoremap ì >gv
 
-" control-j/k/h/l move to split up/down/left/right
+" control-j/k/h/l move to the split up/down/left/right
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
@@ -187,13 +183,17 @@ cmap w!! %!sudo tee > /dev/null %
 " GUI specific ------------------------------------------------------------ {{{
 
 if has("gui_running")
+  " remove toolbar
   set guioptions-=T
+  " highlight cursor line
   set cursorline
 endif
 
 if has("gui_macvim")
   set guifont=Monaco:h13
+  " save undo's after file closes
   set undofile
+  " use option (alt) as meta key
   set macmeta
 endif
 
@@ -247,6 +247,9 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" use enter to select option in the autocomplete menu
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " }}}
 

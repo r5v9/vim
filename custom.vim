@@ -27,20 +27,6 @@ let g:slimv_repl_split = 4
 
 " }}}
 
-" mappings ---------------------------------------------------------- {{{
-
-" wrap words/selections
-"nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
-"nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
-"nnoremap <leader># viw<esc>a}<esc>hbi#{<esc>lel
-"nnoremap <leader>( viw<esc>a)<esc>hbi(<esc>lel
-"vnoremap <leader>" <esc>`<i"<esc>lv`>l<esc>a"<esc>
-"vnoremap <leader>' <esc>`<i'<esc>lv`>l<esc>a'<esc>
-"vnoremap <leader>( <esc>`<i(<esc>lv`>l<esc>a)<esc>
-"vnoremap <leader># <esc>`<i#{<esc>llv`>ll<esc>a}<esc>
-
-" }}}
-
 " commands ---------------------------------------------------------------- {{{
 
 ":V edits vimrc
