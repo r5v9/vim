@@ -32,6 +32,10 @@ let g:slimv_repl_syntax = 1
 " open repl in a vertical split on the right
 let g:slimv_repl_split = 4
 
+let g:slimv_ctags="/usr/local/bin/ctags -a --language-force=lisp --langmap=Lisp:+.clj"
+let g:slimv_menu=1
+let g:slimv_balloon=1
+
 " }}}
 
 " commands ---------------------------------------------------------------- {{{
