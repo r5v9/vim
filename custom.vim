@@ -21,7 +21,7 @@ set showmode! " disable showmode, as powerline shows it
 
 " }}}
 
-" laguages ---------------------------------------------------------------- {{{
+" clojure ----------------------------------------------------------------- {{{
 
 " lisp rainbow parens
 let g:lisp_rainbow=1
@@ -114,6 +114,15 @@ let g:NERDCreateDefaultMappings = 0
 " let g:easytags_by_filetype = '~/.vim/tmp/easytags/'
 " set tags=./tags;
 " let g:easytags_dynamic_files = 1
+
+" fugitive
+" use .. to open parent tree
+autocmd User fugitive
+  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+  \   nnoremap <buffer> .. :edit %:h<CR> |
+  \ endif
+" auto clean fugitive buffers
+autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " }}}
 
