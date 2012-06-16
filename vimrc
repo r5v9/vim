@@ -41,7 +41,7 @@ Bundle 'vim-scripts/ScrollColors'
 " <c-w>o 
 Bundle 'vim-scripts/ZoomWin'
 
-" a tree explorer plugin for navigating the filesystem
+" a tree explorer plugin for navigating the filesystem --------------------- {{{
 " <leader>y toggles nerdtree (custom.vim)
 " o opens dir
 " O opens dir recursively
@@ -53,9 +53,10 @@ Bundle 'vim-scripts/ZoomWin'
 " r refresh current dir
 " R refresh root
 " m show menu (for add/remove/move operations)
+" }}}
 Bundle 'scrooloose/nerdtree'
 
-" git wrapper so awesome, it should be illegal 
+" git wrapper so awesome, it should be illegal ----------------------------- {{{
 " :Gstatus shows git status
 "   - c-n and c-p move around files
 "   - '-' (dash) adds/remove files from index (also works in visual mode)
@@ -100,7 +101,8 @@ Bundle 'scrooloose/nerdtree'
 " :Gremove removes from git and wipes out the buffer (:bwipeout)
 " :Gmove <new location> moves the file and reopens the buffer with the updated file (/ refers to the root of the git repo)
 " :Gcommit commits staged changes
-" :Gblame shows vsplit with commit annotations
+" :Gblame shows vsplit with commit annotations 
+" }}}
 Bundle 'tpope/vim-fugitive'
 
 " markdown support
@@ -109,20 +111,22 @@ Bundle 'tpope/vim-markdown'
 " . repeats commands from some plugins (surround, unimpaired, etc)
 Bundle 'tpope/vim-repeat'
 
-" handles complementary pairs of mappings
+" handles complementary pairs of mappings ---------------------------------- {{{
 " [x and ]x encode and decode XML (and HTML)
 " [u and ]u encode and decode URLs
 " [y and ]y do C String style escaping
 " a-j and a-k move lines (or blocks of lines) up and down (defaults.vim)
+" }}}
 Bundle 'tpope/vim-unimpaired'
 
-" provides mappings to easily delete, change and add such surroundings in pairs
+" mappings to easily delete, change and add such surroundings in pairs ----- {{{
 " S<surround> in visual mode surrounds selection with <surround>
 " eg. S" surrounds selection with "
 "     S<p class="important"> surrounds selection with <p class="important"> and </p>
 " cs"' changes surrounding from " to '
 " ds" removes " surrounding
 " yse" surrounds word with "
+" }}}
 Bundle 'tpope/vim-surround'
 
 " syntax checking plugin that runs files through external syntax checkers and displays any resulting errors
@@ -176,8 +180,14 @@ Bundle 'Zenburn'
 Bundle 'molokai'
 
 if has("python")
+  " visualizing your undo tree to make it usable
+  " :U (custom.vim)
   Bundle 'sjl/gundo.vim'
+
+  " a 'bundles' menu for vim (like textmate) 
   Bundle 'mbadran/headlights'
+
+  " superior lisp interaction mode for vim
   Bundle 'vim-scripts/slimv.vim'
 endif
 
