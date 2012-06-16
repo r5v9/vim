@@ -14,9 +14,6 @@ Bundle 'gmarik/vundle'
 " <leader><space> opens peepeopen (custom.vim)
 Bundle 'shemerey/vim-peepopen'
 
-" library used by ???
-Bundle 'vim-scripts/L9'
-
 " fast and easy find and replace across multiple files
 " <leader>vv  grep for the word under the cursor
 " <leader>g  open grep dialog
