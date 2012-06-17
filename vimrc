@@ -139,6 +139,7 @@ Bundle 'scrooloose/nerdcommenter'
 " tab cycles across option 
 " enter selects option (custom.vim)
 Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neocomplcache-snippets-complete'
 
 " fuzzy file, buffer, mru, tag, etc. finder with regexp support
 " <leater>t opens file mode (custom.vim)
@@ -168,9 +169,6 @@ Bundle 'ton/vim-bufsurf'
 " front for the Perl module App::Ack
 " ,a (custom.vim)
 Bundle 'mileszs/ack.vim'
-
-" textmate-style snippets for Vim 
-" Bundle 'msanders/snipmate.vim'
 
 " color schemes
 Bundle 'Zenburn'
