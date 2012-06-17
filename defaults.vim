@@ -166,6 +166,15 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+" D-h/j/k/l/w/b move around in insert mode
+" ~/.gvimrc unmaps some command shortcuts
+inoremap <D-h> <C-o>h
+inoremap <D-j> <C-o>j
+inoremap <D-k> <C-o>k
+inoremap <D-l> <C-o>l
+inoremap <D-b> <C-o>b
+inoremap <D-w> <C-o>w
+
 " j and k move around displayed lines (for wrapped text)
 nnoremap j gj
 nnoremap k gk
@@ -177,25 +186,6 @@ vnoremap <F1> <ESC>
 
 " use :w!! to write to a file using sudo if you forgot to sudo vim file
 cmap w!! %!sudo tee > /dev/null %
-
-" }}}
-
-" GUI specific ------------------------------------------------------------ {{{
-
-if has("gui_running")
-  " remove toolbar
-  set guioptions-=T
-  " highlight cursor line
-  set cursorline
-endif
-
-if has("gui_macvim")
-  set guifont=Monaco:h13
-  " save undo's after file closes
-  set undofile
-  " use option (alt) as meta key
-  set macmeta
-endif
 
 " }}}
 

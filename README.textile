@@ -2,6 +2,6 @@
 To install, use:
 
 <pre>
-git clone git@github.com:rufiao/vim.git ~/.vim && ln -s ~/.vim/vimrc ~/.vimrc && git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle && vim +BundleInstall +qa
+git clone git@github.com:rufiao/vim.git ~/.vim && ln -s ~/.vim/vimrc ~/.vimrc && ln -s ~/.vim/gvimrc .gvimrc && git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle && vim +BundleInstall +qa
 </pre>
 
