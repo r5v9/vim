@@ -24,8 +24,8 @@ set autoread
 " utf-8 by default
 set encoding=utf-8
 
-" at least 3 lines above or below the cursor
-set scrolloff=3
+" at least 5 lines above or below the cursor
+set scrolloff=5
 
 " autoident
 set autoindent
@@ -167,13 +167,18 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 
 " D-h/j/k/l/w/b move around in insert mode
-" ~/.gvimrc unmaps some command shortcuts
+" D-x/c/d/u remove/change/delete/undo in insert mode
+" ~/.gvimrc unmaps some command shortcuts in macvim
 inoremap <D-h> <C-o>h
 inoremap <D-j> <C-o>j
 inoremap <D-k> <C-o>k
 inoremap <D-l> <C-o>l
 inoremap <D-b> <C-o>b
 inoremap <D-w> <C-o>w
+inoremap <D-x> <C-o>x
+inoremap <D-c> <C-o>c
+inoremap <D-d> <C-o>d
+inoremap <D-u> <C-o>u
 
 " j and k move around displayed lines (for wrapped text)
 nnoremap j gj
