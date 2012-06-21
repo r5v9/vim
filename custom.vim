@@ -1,5 +1,5 @@
 
-" basic options ----------------------------------------------------------- {{{
+" basic options ----------------------------------------------------------------
 
 function! PatchZenburn()
   " make the vertical split separator look like a dar bar
@@ -19,9 +19,7 @@ let g:zenburn_old_Visual = 1
 
 set showmode! " disable showmode, as powerline shows it
 
-" }}}
-
-" clojure ----------------------------------------------------------------- {{{
+" clojure ----------------------------------------------------------------------
 
 " lisp rainbow parens
 let g:lisp_rainbow=1
@@ -36,9 +34,7 @@ let g:slimv_ctags="/usr/local/bin/ctags -a --language-force=lisp --langmap=Lisp:
 let g:slimv_menu=1
 let g:slimv_balloon=1
 
-" }}}
-
-" commands ---------------------------------------------------------------- {{{
+" commands ---------------------------------------------------------------------
 
 ":V edits vimrc
 :command! V exe "e ~/.vim/vimrc"
@@ -73,9 +69,7 @@ let g:slimv_balloon=1
 " :U turns on/off gundo
 :command! U exe ":GundoToggle"
 
-" }}}
-
-" plugin options ---------------------------------------------------------- {{{
+" plugin options ---------------------------------------------------------------
 
 " syntastic
 set statusline+=%#warningmsg#
@@ -128,9 +122,7 @@ autocmd User fugitive
 " auto clean fugitive buffers
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
-" }}}
-
-" neocomplcache ---------------------------------------------------------- {{{
+" neocomplcache ----------------------------------------------------------------
 
 " disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -169,9 +161,7 @@ let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
-" }}}
-
-" plugin mappings --------------------------------------------------------- {{{
+" plugin mappings --------------------------------------------------------------
 
 " peepopen
 map <leader><space> :PeepOpen<cr><cr>
@@ -210,6 +200,3 @@ if ! exists("g:waldo_loaded")
     map <unique> <silent> <Leader>f <Plug>Waldo
   endif
 endif
-
-" }}}
-

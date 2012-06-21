@@ -1,5 +1,5 @@
 
-" basic settings ------------------------------------------------------------------ {{{
+" basic settings ---------------------------------------------------------------
 
 " gets rid of all the crap that Vim does to be vi compatible
 set nocompatible
@@ -97,9 +97,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " disable folds (they slow things down)
 set nofoldenable
 
-" }}}
-
-" basic mappings ---------------------------------------------------------- {{{
+" basic mappings --------------------------------------------------------------- 
 
 " use , as the leader key
 let mapleader = ","
@@ -191,9 +189,7 @@ vnoremap <F1> <ESC>
 " use :w!! to write to a file using sudo if you forgot to sudo vim file
 cmap w!! %!sudo tee > /dev/null %
 
-" }}}
-
-" events ------------------------------------------------------------------ {{{
+" events -----------------------------------------------------------------------
 
 " save on losing focus
 autocmd BufLeave,FocusLost * silent! wall
@@ -210,9 +206,7 @@ augroup resCur
   autocmd BufWinEnter * call ResCur()
 augroup END
 
-" }}}
-
-" file types ------------------------------------------------------------------ {{{
+" file types -------------------------------------------------------------------
 
 " ruby file types
 au BufNewFile,BufRead [vV]agrantfile     set filetype=ruby
@@ -220,9 +214,7 @@ au BufNewFile,BufRead Gemfile            set filetype=ruby
 au BufNewFile,BufRead Capfile            set filetype=ruby
 au BufNewFile,BufRead [rR]akefile,*.rake set filetype=ruby
 
-" }}}
-
-" autocomplete ---------------------------------------------------------------- {{{
+" autocomplete -----------------------------------------------------------------
 
 set ofu=syntaxcomplete#Complete
 
@@ -245,12 +237,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " use enter to select option in the autocomplete menu
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" }}}
-
-" ctags ---------------------------------------------------------------- {{{
+" ctags ------------------------------------------------------------------------
 
 exec "set tags=".fnamemodify('.',':p:p')."tags"
 exec "set tags+=".fnamemodify('.',':p:p')."../tags"
-
-" }}}
-
