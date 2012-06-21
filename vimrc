@@ -113,8 +113,8 @@ Bundle 'tpope/vim-repeat'
 " [u and ]u encode and decode URLs
 " [y and ]y do C String style escaping
 " a-j and a-k move lines (or blocks of lines) up and down (defaults.vim)
-" }}}
 Bundle 'tpope/vim-unimpaired'
+" }}}
 
 " mappings to easily delete, change and add such surroundings in pairs ----- {{{
 " S<surround> in visual mode surrounds selection with <surround>

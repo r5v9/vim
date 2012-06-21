@@ -14,10 +14,6 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 
-" fold settings
-set foldmethod=syntax
-set foldlevelstart=20
-
 " autoreload files if changed externally
 set autoread
 
@@ -97,6 +93,9 @@ set viminfo='100,\"1000,:100,n~/.vim/tmp/viminfo
 
 " disable auto comments
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" disable folds (they slow things down)
+set nofoldenable
 
 " }}}
 
@@ -252,40 +251,6 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 exec "set tags=".fnamemodify('.',':p:p')."tags"
 exec "set tags+=".fnamemodify('.',':p:p')."../tags"
-
-" }}}
-
-" folds ---------------------------------------------------------------- {{{
-
-" use markers for folds in .vimrc and other vim files
-autocmd FileType vim setlocal foldmethod=marker
-
-" persist fold status
-autocmd BufWinLeave .* mkview
-autocmd BufWinEnter .* silent loadview
-
-" Don't screw up folds when inserting text that might affect them, until leaving insert mode. 
-" Foldmethod is local to the window.
-" This also avoids folds to slow down vim while in edit mode
-autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
-autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
-
-function! MyFoldText() 
-  let line = getline(v:foldstart)
-
-  let nucolwidth = &fdc + &number * &numberwidth
-  let windowwidth = winwidth(0) - nucolwidth - 3
-  let foldedlinecount = v:foldend - v:foldstart
-
-  " expand tabs into spaces
-  let onetab = strpart('          ', 0, &tabstop)
-  let line = substitute(line, '\t', onetab, 'g')
-
-  let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-  let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-  return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
-endfunction 
-set foldtext=MyFoldText()
 
 " }}}
 
