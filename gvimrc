@@ -18,6 +18,9 @@ if has("gui_macvim")
   " free command-w
   macmenu File.Close key=<nop>
 
+  " free command-p
+  macmenu File.Print key=<nop>
+
   " free command-l
   macmenu Tools.List\ Errors key=<nop>
 

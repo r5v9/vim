@@ -177,6 +177,9 @@ inoremap <D-c> <C-o>c
 inoremap <D-d> <C-o>d
 inoremap <D-u> <C-o>u
 
+" D-r reformats file
+nnoremap <D-r> gg=G``<cr><up>
+
 " j and k move around displayed lines (for wrapped text)
 nnoremap j gj
 nnoremap k gk

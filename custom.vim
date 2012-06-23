@@ -166,9 +166,11 @@ let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 " peepopen
 map <leader><space> :PeepOpen<cr><cr>
 
-" ,t opens ctrlp
-let g:ctrlp_map = '<leader>t'
-nnoremap <leader>l :CtrlPBuffer<cr>
+" D-p opens ctrlp files
+let g:ctrlp_map = '<D-p>'
+
+" D-l opens ctrlp buffers
+nnoremap <D-b> :CtrlPBuffer<cr>
 
 " ,a opens ACK
 nnoremap <leader>a :Ack<space>
@@ -176,8 +178,8 @@ nnoremap <leader>a :Ack<space>
 " ,g opens Grep
 nnoremap <leader>g :Grep<space>
 
-" ,y toggles nerdtree
-nnoremap <leader>y :NERDTreeToggle<cr>
+" D-y toggles nerdtree
+nnoremap <D-y> :NERDTreeToggle<cr>
 
 " \\ toggles comments
 nnoremap \\ :call NERDComment("n", "toggle")<CR>
